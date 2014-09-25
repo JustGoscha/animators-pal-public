@@ -12,7 +12,8 @@ module.exports = {
     "pencil animation",
     "#indieanimation",
     "@gkurkdjian animation",
-    "animation stopmotion"
+    "animation stopmotion",
+    "animation stop motion"
   ],
   follow: [
     "40436619" // @catsuka - animation blog/magazine

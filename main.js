@@ -4,6 +4,7 @@ var searchqueries = require('./searchqueries');
 //var twit = require('twit');
 
 console.log("Starting Twitter Bot - AnimatorsPal");
+console.log("waiting for: "+searchqueries.track)
 
 var twitter = new twit(credentials);
 
@@ -19,7 +20,7 @@ var twitter = new twit(credentials);
 //  filter the twitter public stream by the word 'mango'.
 //
 var stream = twitter.stream('statuses/filter', { 
-  track: searchqueries.filter,
+  track: searchqueries.track,
   follow: searchqueries.follow
 });
 
