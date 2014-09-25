@@ -1,0 +1,1 @@
+# AnimatorPal - A twitter bot for animation related content
