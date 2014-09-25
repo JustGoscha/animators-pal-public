@@ -1,0 +1,14 @@
+{
+  "name": "AnimatorPal",
+  "version": "0.1.140925",
+  "description": "A twitter bot, for animators",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "twit": "~1.1.18"
+  },
+  "author": "Georg Graf"
+}

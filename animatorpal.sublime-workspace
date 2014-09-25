@@ -1,0 +1,1011 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"orga",
+				"organizationId"
+			],
+			[
+				"loca",
+				"localStorage"
+			],
+			[
+				"orgs",
+				"userOrgs"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"box",
+				"box-sizing"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"secondary",
+				"secondaryFont"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"organ",
+				"organization"
+			],
+			[
+				"orag",
+				"organizationId"
+			],
+			[
+				"show",
+				"showUsers"
+			],
+			[
+				"follower",
+				"followerPromise"
+			],
+			[
+				"organi",
+				"organizationId"
+			],
+			[
+				"load",
+				"loadFollowingWaitTime"
+			],
+			[
+				"followed",
+				"followedUser"
+			],
+			[
+				"type",
+				"type"
+			],
+			[
+				"follow",
+				"followId"
+			],
+			[
+				"elemtns",
+				"elementsFollow"
+			],
+			[
+				"Ca",
+				" ♦ Car Car"
+			],
+			[
+				"Car",
+				" ♦ Car Car"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 59,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 283,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 368.0,
+		"selected_items":
+		[
+			[
+				"toggle",
+				"View: Toggle Side Bar"
+			],
+			[
+				"wrap",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"setting",
+				"Preferences: Settings - User"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"toggle side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"togl",
+				"View: Toggle Side Bar"
+			],
+			[
+				"form",
+				"Format: Javascript"
+			],
+			[
+				"format",
+				"Format: Javascript"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"conver spa",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"dpcBlo",
+				"DocBlockr: Reparse comment block"
+			],
+			[
+				"dc",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"doc",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"user",
+				"Preferences: Settings - User"
+			],
+			[
+				"inden",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"sideba",
+				"View: Toggle Side Bar"
+			],
+			[
+				"settings",
+				"Preferences: Settings - User"
+			],
+			[
+				"ssmd",
+				"Set Syntax: Markdown"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"levels",
+				"Levels: Update"
+			],
+			[
+				"sidebar",
+				"View: Toggle Side Bar"
+			],
+			[
+				"enabl",
+				"Package Control: Enable Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"relaod",
+				"Typescript: Reload Project"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"type",
+				"Typescript: Reload Project"
+			],
+			[
+				"ss type",
+				"Set Syntax: TypeScript"
+			],
+			[
+				"brows",
+				"Preferences: Browse Packages"
+			],
+			[
+				"pacakge",
+				"Package Control: Remove Package"
+			],
+			[
+				"ss json",
+				"Set Syntax: JSON"
+			],
+			[
+				"togle sideb",
+				"View: Toggle Side Bar"
+			],
+			[
+				"wo",
+				"Word Wrap: Toggle"
+			],
+			[
+				"wordwa",
+				"Word Wrap: Toggle"
+			],
+			[
+				"mini",
+				"View: Toggle Minimap"
+			],
+			[
+				"sidb",
+				"View: Toggle Open Files in Side Bar"
+			]
+		],
+		"width": 417.0
+	},
+	"console":
+	{
+		"height": 270.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/justgoscha/Dropbox/WebDev/twitter-bots/AnimatorPal"
+	],
+	"file_history":
+	[
+		"/Users/justgoscha/dev/oximity/newsapp/css/authors.less",
+		"/Users/justgoscha/dev/oximity/newsapp/lib/angular/angular-resource.js",
+		"/Users/justgoscha/dev/oximity/newsapp/css/article-drafts.less",
+		"/Users/justgoscha/dev/oximity/newsapp/css/global.less",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/JSONStream/test/gen.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/less/node_modules/request/lib/getSafe.js",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/popup-follow-info.html",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/popup-facebook-friends.html",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/directives/popup-follower-info.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/css/footer.less",
+		"/Users/justgoscha/dev/oximity/newsapp/css/facebook-friends.less",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/.bin/nodemon",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/glob/test/new-glob-optional-options.js",
+		"/Users/justgoscha/dev/oximity/newsapp/css/variables.less",
+		"/Users/justgoscha/dev/oximity/newsapp/css/main.less",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/components/renderers/signature.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/settings.gradle",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_iw.json",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/main.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/controllers/global-controller.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/css/profile.less",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/browser-pack/node_modules/combine-source-map/node_modules/convert-source-map/test/fixtures/map-file-comment.css.map",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/lib/jquery_file_upload/js/jquery.fileupload-angular.js",
+		"/Users/justgoscha/dev/oximity/newsapp/css/article-page-large-style.less",
+		"/Users/justgoscha/dev/oximity/newsapp/css/article-page.less",
+		"/Users/justgoscha/dev/oximity/newsapp/partner-modules/netrootsnation/templates/directives/header.html",
+		"/Users/justgoscha/dev/oximity/newsapp/css/header.less",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/directives/header-element.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/controllers/article-page-controller.coffee.orig",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/insert-module-globals/node_modules/JSONStream/LICENSE.APACHE2",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/controllers/article-page-controller.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/build/js/compile/core-modules/main/js/services/api-service.js",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/services/api-service.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/css/main.less.LOCAL.43306.less",
+		"/Users/justgoscha/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/justgoscha/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/directives/popup-digest-settings.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/css/popup-digest-settings.less",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/controllers/profile-controller.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/templates/directives/popups-container.html",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/templates/directives/popup-follow-info.html",
+		"/Users/justgoscha/dev/todos.mdown",
+		"/Users/justgoscha/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/deep-equal/lib/keys.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/resolve/example/sync.js",
+		"/Users/justgoscha/dev/oximity/newsapp/css/article-lens.less",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/admin/js/directives/signature.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/share-buttons-inline.html",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/less/.idea/inspectionProfiles/profiles_settings.xml",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/templates/article-page.html",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/article-page.html",
+		"/Users/justgoscha/dev/oximity/newsapp/css/article-edit.less",
+		"/Users/justgoscha/dev/oximity/newsapp/css/article-editor.less",
+		"/Users/justgoscha/dev/oximity/newsapp/css/article-format.less",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/css/main.css",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/css/main.map",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/js/main.js",
+		"/Users/justgoscha/dev/oximity/newsapp/lib/jquery_file_upload/js/main.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/mapcat/example/main.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/css/main-article.less",
+		"/Users/justgoscha/dev/oximity/newsapp/scripts/main.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_en.json",
+		"/Users/justgoscha/dev/oximity/newsapp/scripts/messages.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_de.json",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_ar.json",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_es.json",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_fr.json",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_pt.json",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_ru.json",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_short.js",
+		"/Users/justgoscha/dev/oximity/newsapp/languages/messages_zh.json",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/loader/js/messages.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/services/messages.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/less/node_modules/request/node_modules/hawk/test/message.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/browserify-zlib/node_modules/pako/lib/zlib/messages.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/nodemon/node_modules/update-notifier/node_modules/request/node_modules/hawk/test/message.js",
+		"/Users/justgoscha/dev/oximity/newsapp/scripts/extractMessages.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/scripts/extractMessagesMini.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/scripts/extractMessagesShrink.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/lib/jquery_file_upload/cors/postmessage.html",
+		"/Users/justgoscha/dev/oximity/newsapp/lib/jquery_file_upload/js/cors/jquery.postmessage-transport.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/nodemon/node_modules/ps-tree/node_modules/event-stream/node_modules/optimist/test/usage.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/nodemon/node_modules/ps-tree/node_modules/event-stream/node_modules/optimist/examples/usage-options.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/module-deps/node_modules/detective/node_modules/escodegen/node_modules/source-map/lib/source-map/source-map-generator.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/less/node_modules/source-map/test/source-map/test-source-map-generator.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/mapcat/node_modules/source-map/test/source-map/test-source-map-generator.js",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/uglify-js/node_modules/source-map/test/source-map/test-source-map-generator.js",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_ar.json",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_de.json",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_en.json",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_es.json",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_fr.json",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_iw.json",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_pt.json",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_ru.json",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/languages/messages_zh.json",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/node_modules/insert-module-globals/node_modules/lexical-scope/node_modules/astw/node_modules/esprima-fb/package.json",
+		"/Users/justgoscha/dev/oximity/newsapp/css/medium-screen.less",
+		"/Users/justgoscha/dev/oximity/newsapp/Makefile",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/templates/directives/popup-facebook-friends.html",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/popup-article-translation.html",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/popup-digest-settings.html",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/less/test/css/variables-in-at-rules.css",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/most-viewed-articles.html",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/filters/start-from-filter.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/css/staff-page.less",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/filters/social-title-bold-filter.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/directives/popups-container.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/popups-container.html",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/directives/sidebar-facebook-friends.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/directives/popup-facebook-friends.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/sidebar-facebook-friends.html",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/popup-boost-article.html",
+		"/Users/justgoscha/dev/oximity/newsapp/build/newsappintern.war/templates/directives/popup-subscribe-mail-confirmation.html",
+		"/Users/justgoscha/dev/oximity/newsapp/out.map",
+		"/Users/justgoscha/dev/oximity/newsapp/lib/jquery_file_upload/css/demo-ie8.css",
+		"/Users/justgoscha/dev/oximity/newsapp/css/dynamic-html-content.less",
+		"/Users/justgoscha/dev/oximity/newsapp/css/popup-login.less",
+		"/Users/justgoscha/Library/Application Support/Sublime Text 3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/templates/directives/popup-digest-settings.html",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/main/js/directives/facebook-comments.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/core-modules/loader/js/fake-angular.coffee",
+		"/Users/justgoscha/dev/oximity/newsapp/node_modules/browserify/test/five_bundle.js",
+		"/Users/justgoscha/dev/oximity/newsapp/build/js/compile/core-modules/main/js/directives/popup-facebook-friends.js",
+		"/Users/justgoscha/Library/Application Support/Sublime Text 3/Packages/Better CoffeeScript/CoffeeScript.sublime-settings",
+		"/Users/justgoscha/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
+		"/Users/justgoscha/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/justgoscha/dev/oximity/newsapp/css/layout.less"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"left: 0.8em",
+			"self",
+			"$scope.user",
+			"Private",
+			"Private Followers",
+			"org",
+			"stats",
+			"debugger",
+			"followers",
+			"get organ",
+			"resize",
+			"window.path",
+			"clickab",
+			"display",
+			"contact-btn",
+			"unfollow ",
+			"unfollow",
+			"14px",
+			"15px",
+			"follow",
+			"class=\"contact",
+			"contact",
+			"btn-contact",
+			"class=\"bt",
+			"cloak",
+			"ng-cloak",
+			"$window",
+			"follow",
+			"getArticle",
+			"debugger",
+			"console.log ix++",
+			"HEAD",
+			"super+alt+j",
+			"followSwitch",
+			"api.follow",
+			"follow",
+			"followme",
+			"follow",
+			"followme",
+			"Unfoll",
+			"unfollow",
+			"left 0.3s 0 linear",
+			"transform",
+			"0.5",
+			"popup-content",
+			"friend",
+			"Friend",
+			"friend",
+			"showFollowers",
+			"filteredList",
+			"numPages",
+			"showFriends",
+			"scope.friendsList",
+			"scope.filteredList",
+			"facebookFriendsLoaded",
+			"facebookFriends",
+			"popup-facebook-friends-render",
+			".popup-facebook-friends-render",
+			"id=",
+			"#popup-facebook-frie",
+			"popup-facebook-friends",
+			"popup-digest-settings",
+			"popupFollowInfo",
+			"popupDigestSettings",
+			".left",
+			"nav-bar",
+			"notification-overlay",
+			"indent",
+			"tree",
+			"side bar",
+			"indent",
+			"popup",
+			"main",
+			"if",
+			"loadFollowers",
+			"organization",
+			"unfollow",
+			"isFollowed",
+			"debugger",
+			"articles",
+			"socialClass",
+			"hasFollowers",
+			"social",
+			"link in links",
+			"info",
+			"scope",
+			"status",
+			"facebookApiService",
+			"debugger",
+			" Articles",
+			"Articles",
+			"$timeout",
+			"$scope.following",
+			"isFollowed",
+			"cache.tag",
+			"suggest",
+			"Suggest",
+			"suggest",
+			"user_id",
+			"$timeout",
+			"user",
+			"following",
+			"user_id",
+			"following",
+			"$timeout",
+			"userOrg",
+			"follow(",
+			"false",
+			"userId",
+			"user",
+			"userOrgLists",
+			"follow",
+			"methodExecuteJSON",
+			"putExecuteJSON",
+			"updateArticleContent",
+			"updateDraft",
+			"putExe",
+			"postEx",
+			"followUser",
+			"follow-button",
+			"numberArticles",
+			"keys"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"          <div ng-show=\"!self\" class=\"follow-button\" ng-class=\"{unfollow: isFollowed(), full: user.emailPossible || user.emailAllowed}\">\n            <div ng-if=\"user.organizationId\" ng-click=\"followOrg()\">\n              <span class=\"t-follow\">follow us</span>\n              <span class=\"t-unfollow\">unfollow us</span>\n            </div>\n            <div ng-if=\"user.userId\" ng-click=\"followUser()\">\n              <span class=\"t-follow\">follow me</span>\n              <span class=\"t-unfollow\">unfollow me</span>\n            </div>\n          </div>\n          <div ng-if=\"!!(user.emailAllowed && user.userId) || !!(user.emailPossible && user.organizationId)\">\n            <a ng-if=\"!!(user.emailAllowed && user.userId)\" class=\"btn-contact\" \n               ng-href=\"{{'/newsweb/account/sendMessage.xhtml?userId=' + user.userId}}\" target=\"_self\" \n               bo-text=\"$root.messages('account.userShow.30.field.contactMe')\">&nbsp;</a>\n            <a ng-if=\"!!(user.emailPossible && user.organizationId)\" class=\"btn-contact\" \n               ng-href=\"{{'/newsweb/account/sendMessage.xhtml?organizationId=' + user.organizationId}}\" target=\"_self\" \n               bo-text=\"$root.messages('account.organizationShow.40.contact')\">&nbsp;</a>\n          </div>"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 59,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								59,
+								59
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 283,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								120,
+								120
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "animatorpal.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"globalcont",
+				"core-modules/main/js/controllers/global-controller.coffee"
+			],
+			[
+				"api",
+				"core-modules/main/js/services/api-service.coffee"
+			],
+			[
+				"popupfollo",
+				"core-modules/main/js/directives/popup-follower-info.coffee"
+			],
+			[
+				"popi",
+				"core-modules/main/templates/directives/popup-follow-info.html"
+			],
+			[
+				"popupfol",
+				"build/newsappintern.war/templates/directives/popup-follow-info.html"
+			],
+			[
+				"follo",
+				"build/newsappintern.war/templates/directives/popup-follow-info.html"
+			],
+			[
+				"variab",
+				"css/variables.less"
+			],
+			[
+				"signa",
+				"core-modules/main/js/components/renderers/signature.coffee"
+			],
+			[
+				"global",
+				"css/global.less"
+			],
+			[
+				"mixin",
+				"css/mixins.less"
+			],
+			[
+				"profi",
+				"css/profile.less"
+			],
+			[
+				"profile",
+				"core-modules/main/templates/profile.html"
+			],
+			[
+				"gloa",
+				"css/global.less"
+			],
+			[
+				"globalcon",
+				"core-modules/main/js/controllers/global-controller.coffee"
+			],
+			[
+				"article-page-controll",
+				"core-modules/main/js/controllers/article-page-controller.coffee"
+			],
+			[
+				"main.less",
+				"css/main.less"
+			],
+			[
+				"profilecont",
+				"core-modules/main/js/controllers/profile-controller.coffee"
+			],
+			[
+				"headerhtml",
+				"partner-modules/netrootsnation/templates/directives/header.html"
+			],
+			[
+				"globalcontr",
+				"core-modules/main/js/controllers/global-controller.coffee"
+			],
+			[
+				"articlepage",
+				"core-modules/main/js/controllers/article-page-controller.coffee"
+			],
+			[
+				"articlepagecontroler",
+				"core-modules/main/js/controllers/article-page-controller.coffee.orig"
+			],
+			[
+				"api-ser",
+				"core-modules/main/js/services/api-service.coffee"
+			],
+			[
+				"mainless",
+				"css/main.less"
+			],
+			[
+				"articlepageco",
+				"core-modules/main/js/controllers/article-page-controller.coffee"
+			],
+			[
+				"signat",
+				"core-modules/main/js/components/renderers/signature.coffee"
+			],
+			[
+				"signature",
+				"core-modules/admin/js/directives/signature.coffee"
+			],
+			[
+				"main",
+				"core-modules/main/js/main.coffee"
+			],
+			[
+				"article-cont",
+				"core-modules/main/js/controllers/article-page-controller.coffee"
+			],
+			[
+				"maincss",
+				"build/newsappintern.war/css/main.css"
+			],
+			[
+				"mess",
+				"languages/messages_en.json"
+			],
+			[
+				"message",
+				"scripts/messages.coffee"
+			],
+			[
+				"messagesjso",
+				"languages/messages_en.json"
+			],
+			[
+				"popupdiges",
+				"css/popup-digest-settings.less"
+			],
+			[
+				"popup-digest",
+				"core-modules/main/js/directives/popup-digest-settings.coffee"
+			],
+			[
+				"profil",
+				"css/profile.less"
+			],
+			[
+				"faceb",
+				"css/facebook-friends.less"
+			],
+			[
+				"star",
+				"core-modules/main/js/filters/start-from-filter.coffee"
+			],
+			[
+				"popup",
+				"core-modules/main/templates/directives/popup-facebook-friends.html"
+			],
+			[
+				"popupcontain",
+				"core-modules/main/templates/directives/popups-container.html"
+			],
+			[
+				"facebookfirends",
+				"core-modules/main/js/directives/popup-facebook-friends.coffee"
+			],
+			[
+				"face",
+				"css/facebook-friends.less"
+			],
+			[
+				"popupface",
+				"build/newsappintern.war/templates/directives/popup-facebook-friends.html"
+			],
+			[
+				"popups-container",
+				"core-modules/main/templates/directives/popups-container.html"
+			],
+			[
+				"popups-con",
+				"core-modules/main/js/directives/popups-container.coffee"
+			],
+			[
+				"popupdigest",
+				"core-modules/main/js/directives/popup-digest-settings.coffee"
+			],
+			[
+				"popup-follow",
+				"core-modules/main/templates/directives/popup-follow-info.html"
+			],
+			[
+				"facebook",
+				"css/facebook-friends.less"
+			],
+			[
+				"gloabl",
+				"css/global.less"
+			],
+			[
+				"poupdigestle",
+				"css/popup-digest-settings.less"
+			],
+			[
+				"pop",
+				"build/newsappintern.war/templates/directives/popup-facebook-friends.html"
+			],
+			[
+				"popdigest",
+				"core-modules/main/js/directives/popup-digest-settings.coffee"
+			],
+			[
+				"popudigest",
+				"core-modules/main/templates/directives/popup-digest-settings.html"
+			],
+			[
+				"digest",
+				"build/newsappintern.war/templates/directives/popup-digest-settings.html"
+			],
+			[
+				"crmuser",
+				"core-modules/admin/templates/crmUserOrgLists.html"
+			],
+			[
+				"crm",
+				"build/newsappintern.war/templates/crmUserOrgLists.html"
+			],
+			[
+				".giti",
+				".gitignore"
+			],
+			[
+				"utils",
+				"core-modules/main/js/services/api-utils-service.coffee"
+			],
+			[
+				"render",
+				"core-modules/main/js/components/renderers/render.coffee"
+			],
+			[
+				"sublime",
+				"_drafts/2013-09-15-My-development-setup-with-Sublime.md"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 189.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
