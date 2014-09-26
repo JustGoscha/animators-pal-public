@@ -25,6 +25,7 @@ var stream = twitter.stream('statuses/filter', {
 });
 
 stream.on('tweet', function (tweet) {
+  console.log(new Date());
   console.log(tweet.id_str);
   console.log(tweet.text+'\n');
 });
