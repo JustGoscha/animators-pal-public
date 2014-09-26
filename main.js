@@ -215,7 +215,10 @@ function cutTweets(){
  */
 function followTweeter(tweet){
   if(!tweet.user.following){
-    console.log("Follow the user!");
+    console.log("* * * Follow the user! * * *");
+    follow(tweet);
+  } else {
+    console.log("-> Already following user...");
   }
 
 }
@@ -230,6 +233,7 @@ function doRetweet(tweet){
     counter++;
     console.log("____RETWEET IT____");
     tweets.push(tweet);
+    retweet(tweet);
     console.log('tweeted: '+tweets.length+' counter: '+counter);
   } else {
     console.log("<-- Pushed on QUEUE: " + queue.length);
@@ -251,8 +255,23 @@ function dispatchQueue() {
 
 }
 
-function retweet(){
+function follow (tweet) {
+  twitter.post('friendships/create', { user_id: tweet.user.id_str }, function (err, data, response) {
+    // console.log(data);
+    if(err){
+      console.log("- - - follow ERROR: " + err);
+    }
+  });
+}
 
+function retweet(tweet){
+  // use id_str for everything because of stupid JS
+  twitter.post('statuses/retweet/:id', { id: tweet.id_str }, function (err, data, response) {
+    // console.log(data);
+    if(err){
+      console.log("- - - retweet ERROR: " + err);
+    }
+  });
 }
 
 
