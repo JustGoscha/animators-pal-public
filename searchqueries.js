@@ -5,6 +5,7 @@ module.exports = {
     "traditional animation",
     "#walkcycle",
     "handdrawn animation",
+    "hand drawn animation",
     "animation gif 2d",
     "handdrawn gif",
     "animation film 2d",
@@ -14,6 +15,7 @@ module.exports = {
     "animation stopmotion",
     "animation stop motion",
     "drawing animation",
+    "#handdrawnanimation",
 
     "animator job",
     "animation job",
@@ -32,7 +34,11 @@ module.exports = {
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
-    "606663038" // AnimationBreaks
+    "606663038" // @AnimationBreaks
+  ],
+  followed: [
+    "@catsuka",
+    "@AnimationBreaks"
   ]
 }
 
