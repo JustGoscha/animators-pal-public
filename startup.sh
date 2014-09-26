@@ -1,0 +1,1 @@
+forever -o /opt/node-servers/animator-pal/server.log main.js > /dev/null &
