@@ -30,7 +30,11 @@ module.exports = {
     "#indieanimator",
     "animator stopmotion",
     "animator stop motion",
-    "animators animation"
+    "animators animation",
+
+    "animated short film -cgi -3d"
+
+
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine

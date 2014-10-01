@@ -20,7 +20,7 @@ var twitter = new twit(credentials);
 // tweets that were re-tweeted, about 1000...
 var tweets = [];
 
-var tweetsLimit = 1000;
+var tweetsLimit = 500;
 var cutBy = 100;
 
 /**
@@ -54,6 +54,7 @@ setInterval(cutTweets,360000);
 
 
 function connect(){
+
   //
   //  filter the twitter public stream by the word 'mango'.
   //
@@ -160,7 +161,6 @@ function isReplyOrMessage(tweet){
     }
   }
   return false;
-
 }
 
 function wasRetweetedRecently(tweet){
@@ -214,13 +214,15 @@ function cutTweets(){
  * @return {[type]}
  */
 function followTweeter(tweet){
+  // don't follow everybody... 
   if(!tweet.user.following){
-    console.log("* * * Follow the user! * * *");
-    follow(tweet);
+    if(Math.random()>0.8){  
+        console.log("* * * Yeahy! Follow the user! * * *");
+        follow(tweet);
+      }
   } else {
     console.log("-> Already following user...");
   }
-
 }
 
 /**
@@ -231,9 +233,17 @@ function followTweeter(tweet){
 function doRetweet(tweet){
   if(counter<limit){
     counter++;
-    console.log("____RETWEET IT____");
+    if(tweet.entities.urls.length>0){
+      console.log(" - - - RETWEET IT - - -"); // manual retweet turned off...
+      retweet(tweet);
+    } else {
+      console.log(" - - - RETWEET IT - - -");
+      retweet(tweet);
+    }
+    if (tweet.entities.media && tweet.entities.media.length>0) {
+      console.log("-> has media, but not link!");
+    } 
     tweets.push(tweet);
-    retweet(tweet);
     console.log('tweeted: '+tweets.length+' counter: '+counter);
   } else {
     console.log("<-- Pushed on QUEUE: " + queue.length);
@@ -256,22 +266,36 @@ function dispatchQueue() {
 }
 
 function follow (tweet) {
-  twitter.post('friendships/create', { user_id: tweet.user.id_str }, function (err, data, response) {
-    // console.log(data);
-    if(err){
-      console.log("- - - follow ERROR: " + err);
-    }
-  });
+  if(credentials.production){
+    twitter.post('friendships/create', { user_id: tweet.user.id_str }, function (err, data, response) {
+      // console.log(data);
+      if(err){
+        console.log("- - - follow ERROR: " + err);
+      }
+    });
+  }
+}
+
+function manualRetweet(tweet){
+  console.log("- - - manual RETWEET - - -");
+  var rtMessage = "RT @"+tweet.user.screen_name+": "+tweet.text;
+  console.log("Retweet length chars: "+rtMessage.length);
+  if(rtMessage.length>140){
+    console.log("-> Manual retweet not possible :(, trying normal retweet.");
+    retweet(tweet);   
+  }
 }
 
 function retweet(tweet){
-  // use id_str for everything because of stupid JS
-  twitter.post('statuses/retweet/:id', { id: tweet.id_str }, function (err, data, response) {
-    // console.log(data);
-    if(err){
-      console.log("- - - retweet ERROR: " + err);
-    }
-  });
+  if(credentials.production){
+    // use id_str for everything because of stupid JS
+    twitter.post('statuses/retweet/:id', { id: tweet.id_str }, function (err, data, response) {
+      // console.log(data);
+      if(err){
+        console.log("- - - retweet ERROR: " + err);
+      }
+    });
+  }
 }
 
 
