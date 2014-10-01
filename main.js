@@ -164,7 +164,7 @@ function isReplyOrMessage(tweet){
 }
 
 function wasRetweetedRecently(tweet){
-  for(var i = 1; i<tweets.length && i<=100; i++){
+  for(var i = 1; i<tweets.length && i<=30; i++){
     var j = tweets.length-i;
     if (tweets[j].user.name == tweet.user.name){
       console.log("->user was retweeted recently");
@@ -250,8 +250,6 @@ function doRetweet(tweet){
     queue.push(tweet);
   }
 }
-
-
 
 
 function dispatchQueue() {
