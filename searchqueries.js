@@ -42,7 +42,8 @@ module.exports = {
   ],
   followed: [
     "@catsuka",
-    "@AnimationBreaks"
+    "@AnimationBreaks",
+    "@motionographer"
   ]
 }
 
