@@ -38,7 +38,8 @@ module.exports = {
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
-    "606663038" // @AnimationBreaks
+    "606663038", // @AnimationBreaks
+    "14466815"
   ],
   followed: [
     "@catsuka",
