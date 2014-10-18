@@ -4,4 +4,5 @@
 # -l : forever logfile
 # -e : error log
 # --spinSleepTime :time between restarts
-forever -o /opt/node-servers/animator-pal/server.log -l forever.log -e error.log --spinSleepTime 5000 start main.js 
+LOGDIR=/opt/node-servers/animator-pal/logs
+forever -o ${LOGDIR}/server.log -l ${LOGDIR}/forever.log -e ${LOGDIR}/error.log --spinSleepTime 5000 start main.js 
