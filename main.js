@@ -37,7 +37,7 @@ var maxQueue = 30;
  */
 var counter = 0;
 
-// decrease counter every second
+// decrease counter every minute
 setInterval(function(){
   if(counter>0){
     counter--;
@@ -47,7 +47,7 @@ setInterval(function(){
   }
 }, 71000);
 
-// every hour look if we have more than a certain amount of tweet
+// every hour look if we have more than a certain amount of tweets
 setInterval(cutTweets,360000);
 
 
@@ -85,8 +85,6 @@ function connect(){
     console.log('');
 
   });
-
-  stream.o
 
   stream.on('disconnect', function (disconnectMessage) {
     console.log("- - - Disconnect - - - ");
@@ -202,6 +200,7 @@ function sameText(tweet){
  * @return {[type]}
  */
 function cutTweets(){
+  console.log("... Time to cleanup a little? ...");
   if(tweets.length>tweetsLimit-cutBy){
     console.log("- - - Trim list of tweets! - - -");
     tweets.splice(0, cutBy);
