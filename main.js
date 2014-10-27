@@ -81,10 +81,6 @@ function connect(){
   });
   stream.on('connect', function (response) {
     console.log("- - - Connect - - - ");
-  });
-  stream.on('connected', function (response) {
-    console.log("- - - Connected - - - ");
-
     stream.on('tweet', function (tweet) {
       console.log(new Date());
       console.log("from: "+tweet.user.name + " tweet_id:" + tweet.id_str);
@@ -107,6 +103,10 @@ function connect(){
       console.log('');
 
     });
+
+  });
+  stream.on('connected', function (response) {
+    //console.log("- - - Connected - - - ");
   });
 }
 
