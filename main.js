@@ -63,29 +63,6 @@ function connect(){
     follow: searchqueries.follow
   });
 
-  stream.on('tweet', function (tweet) {
-    console.log(new Date());
-    console.log("from: "+tweet.user.name + " tweet_id:" + tweet.id_str);
-    console.log(tweet.text);
-
-    var retweetIt = true;
-    if(isRetweet(tweet)
-      ||checkSimilarUrls(tweet)
-      ||isReplyOrMessage(tweet)
-      ||wasRetweetedRecently(tweet)
-      ||sameText(tweet)
-      ){
-      retweetIt = false;
-    }
-
-    if(retweetIt){
-      doRetweet(tweet);
-      followTweeter(tweet);
-    }
-    console.log('');
-
-  });
-
   stream.on('disconnect', function (disconnectMessage) {
     console.log("- - - Disconnect - - - ");
     console.log(disconnectMessage);
@@ -103,7 +80,33 @@ function connect(){
     console.log("- - - Reconnect - - - ");
   });
   stream.on('connect', function (response) {
+    console.log("- - - Connect - - - ");
+  });
+  stream.on('connected', function (response) {
     console.log("- - - Connected - - - ");
+
+    stream.on('tweet', function (tweet) {
+      console.log(new Date());
+      console.log("from: "+tweet.user.name + " tweet_id:" + tweet.id_str);
+      console.log(tweet.text);
+
+      var retweetIt = true;
+      if(isRetweet(tweet)
+        ||checkSimilarUrls(tweet)
+        ||isReplyOrMessage(tweet)
+        ||wasRetweetedRecently(tweet)
+        ||sameText(tweet)
+        ){
+        retweetIt = false;
+      }
+
+      if(retweetIt){
+        doRetweet(tweet);
+        followTweeter(tweet);
+      }
+      console.log('');
+
+    });
   });
 }
 
