@@ -5,7 +5,7 @@ var levenstein = require('./lib/levenstein');
 //var twit = require('twit');
 
 var log = function(message){
-  console.log(new Date()+": "+message);
+  console.log(new Date().toLocaleString()+": "+message);
 }
 log("Starting Twitter Bot - AnimatorsPal");
 log("waiting for: "+searchqueries.track)
