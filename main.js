@@ -4,16 +4,19 @@ var searchqueries = require('./searchqueries');
 var levenstein = require('./lib/levenstein');
 //var twit = require('twit');
 
-console.log("Starting Twitter Bot - AnimatorsPal");
-console.log("waiting for: "+searchqueries.track)
+var log = function(message){
+  console.log(new Date()+": "+message);
+}
+log("Starting Twitter Bot - AnimatorsPal");
+log("waiting for: "+searchqueries.track)
 
 var limit = 15;
 var twitter = new twit(credentials);
 
 // twitter.get('search/tweets', { q: '@gkurkdjian animation since:2014-09-11', count: 20 }, function(err, data, response) {
 //   for(var i in data.statuses){
-//     console.log(i)
-//     console.log(data.statuses[i].text); 
+//     log(i)
+//     log(data.statuses[i].text); 
 //   }
 // });
 
@@ -64,27 +67,27 @@ function connect(){
   });
 
   stream.on('disconnect', function (disconnectMessage) {
-    console.log("- - - Disconnect - - - ");
-    console.log(disconnectMessage);
+    log("- - - Disconnect - - - ");
+    log(disconnectMessage);
   });
 
   stream.on('warning', function (warningMessage) {
-    console.log("- - - Warning - - - ");
-    console.log(warningMessage);
+    log("- - - Warning - - - ");
+    log(warningMessage);
   });
   stream.on('limit', function (limitMessage) {
-    console.log("- - - Limit - - - ");
-    console.log(limitMessage);
+    log("- - - Limit - - - ");
+    log(limitMessage);
   });
   stream.on('reconnect', function (request, response, connectInterval) {
-    console.log("- - - Reconnect - - - ");
+    log("- - - Reconnect - - - ");
   });
   stream.on('connect', function (response) {
-    console.log("- - - Connect - - - ");
+    log("- - - Connect - - - ");
     stream.on('tweet', function (tweet) {
-      console.log(new Date());
-      console.log("from: "+tweet.user.name + " tweet_id:" + tweet.id_str);
-      console.log(tweet.text);
+      log(new Date());
+      log("from: "+tweet.user.name + " tweet_id:" + tweet.id_str);
+      log(tweet.text);
 
       var retweetIt = true;
       if(isRetweet(tweet)
@@ -100,19 +103,19 @@ function connect(){
         doRetweet(tweet);
         followTweeter(tweet);
       }
-      console.log('');
+      log('');
 
     });
 
   });
   stream.on('connected', function (response) {
-    //console.log("- - - Connected - - - ");
+    //log("- - - Connected - - - ");
   });
 }
 
 function isRetweet(tweet) {
   if (tweet.text.indexOf("RT @") === 0){
-    console.log("-> Is a retweet");
+    log("-> Is a retweet");
     return true;
   } 
   return false;
@@ -125,9 +128,9 @@ function checkSimilarUrls(tweet){
   if( urls && urls.length>0){
     // set similar false, if it loops a second time
     similar = false;
-    console.log("->urls in this tweet:");
+    log("->urls in this tweet:");
     for(var i in urls){
-      console.log(urls[i].expanded_url);
+      log(urls[i].expanded_url);
 
       // now check if the URL was already in some post
       for(var j in tweets){
@@ -135,7 +138,7 @@ function checkSimilarUrls(tweet){
         if(oldUrls && oldUrls.length>0){
           for(var k in oldUrls){
             if(oldUrls[k].expanded_url == urls[i].expanded_url){
-              console.log('-> the url is already in another tweet!');
+              log('-> the url is already in another tweet!');
               similar = true;
               break;
             }
@@ -149,7 +152,7 @@ function checkSimilarUrls(tweet){
     }
   }
   if(similar)
-    console.log("-> URLS in the tweet were similar to another tweet");
+    log("-> URLS in the tweet were similar to another tweet");
 
   return similar;
 }
@@ -157,7 +160,7 @@ function checkSimilarUrls(tweet){
 function isReplyOrMessage(tweet){
   for(var i in searchqueries.followed){
     if(tweet.text.indexOf(searchqueries.followed[i])>=0){
-      console.log("-> is probably a reply or message to "+searchqueries.followed);
+      log("-> is probably a reply or message to "+searchqueries.followed);
       return true;
     }
   }
@@ -168,7 +171,7 @@ function wasRetweetedRecently(tweet){
   for(var i = 1; i<tweets.length && i<=30; i++){
     var j = tweets.length-i;
     if (tweets[j].user.name == tweet.user.name){
-      console.log("->user was retweeted recently");
+      log("->user was retweeted recently");
       return true;
     }
   }
@@ -191,7 +194,7 @@ function sameText(tweet){
   for (var i in tweets){
     var t2 = tweets[i];
     if(t2.text.indexOf(text)>=0){
-      console.log("-> same text as other tweet!");
+      log("-> same text as other tweet!");
       return true;
     }
   }
@@ -203,9 +206,9 @@ function sameText(tweet){
  * @return {[type]}
  */
 function cutTweets(){
-  console.log("... Time to cleanup a little? ...");
+  log("... Time to cleanup a little? ...");
   if(tweets.length>tweetsLimit-cutBy){
-    console.log("- - - Trim list of tweets! - - -");
+    log("- - - Trim list of tweets! - - -");
     tweets.splice(0, cutBy);
   }
 }
@@ -219,11 +222,11 @@ function followTweeter(tweet){
   // don't follow everybody... 
   if(!tweet.user.following){
     if(Math.random()>0.8){  
-        console.log("* * * Yeahy! Follow the user! * * *");
+        log("* * * Yeahy! Follow the user! * * *");
         follow(tweet);
       }
   } else {
-    console.log("-> Already following user...");
+    log("-> Already following user...");
   }
 }
 
@@ -236,31 +239,31 @@ function doRetweet(tweet){
   if(counter<limit){
     counter++;
     if(tweet.entities.urls.length>0){
-      console.log(" - - - RETWEET IT - - -"); // manual retweet turned off...
+      log(" - - - RETWEET IT - - -"); // manual retweet turned off...
       retweet(tweet);
     } else {
-      console.log(" - - - RETWEET IT - - -");
+      log(" - - - RETWEET IT - - -");
       retweet(tweet);
     }
     if (tweet.entities.media && tweet.entities.media.length>0) {
-      console.log("-> has media, but not link!");
+      log("-> has media, but not link!");
     } 
     tweets.push(tweet);
-    console.log('tweeted: '+tweets.length+' counter: '+counter);
+    log('tweeted: '+tweets.length+' counter: '+counter);
   } else {
-    console.log("<-- Pushed on QUEUE: " + queue.length);
+    log("<-- Pushed on QUEUE: " + queue.length);
     queue.push(tweet);
   }
 }
 
 
 function dispatchQueue() {
-  console.log("- - - Dispatch from queue - - -");
+  log("- - - Dispatch from queue - - -");
   if(counter<10 && counter>0){
     doRetweet(queue.pop());
     setInterval(dispatchQueue(),20000);
   } else {
-    console.log("- - - Stop from queue - - -");
+    log("- - - Stop from queue - - -");
   }
 
 }
@@ -268,20 +271,20 @@ function dispatchQueue() {
 function follow (tweet) {
   if(credentials.production){
     twitter.post('friendships/create', { user_id: tweet.user.id_str }, function (err, data, response) {
-      // console.log(data);
+      // log(data);
       if(err){
-        console.log("- - - follow ERROR: " + err);
+        log("- - - follow ERROR: " + err);
       }
     });
   }
 }
 
 function manualRetweet(tweet){
-  console.log("- - - manual RETWEET - - -");
+  log("- - - manual RETWEET - - -");
   var rtMessage = "RT @"+tweet.user.screen_name+": "+tweet.text;
-  console.log("Retweet length chars: "+rtMessage.length);
+  log("Retweet length chars: "+rtMessage.length);
   if(rtMessage.length>140){
-    console.log("-> Manual retweet not possible :(, trying normal retweet.");
+    log("-> Manual retweet not possible :(, trying normal retweet.");
     retweet(tweet);   
   }
 }
@@ -290,9 +293,9 @@ function retweet(tweet){
   if(credentials.production){
     // use id_str for everything because of stupid JS
     twitter.post('statuses/retweet/:id', { id: tweet.id_str }, function (err, data, response) {
-      // console.log(data);
+      // log(data);
       if(err){
-        console.log("- - - retweet ERROR: " + err);
+        log("- - - retweet ERROR: " + err);
       }
     });
   }
@@ -306,6 +309,6 @@ function init() {
 init();
 // // use id_str for everything because of stupid JS
 // twitter.post('statuses/retweet/:id', { id: '514011659393064961' }, function (err, data, response) {
-//   console.log(data)
+//   log(data)
 //   console.error(err)
 // });
