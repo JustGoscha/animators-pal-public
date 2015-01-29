@@ -5,10 +5,13 @@ var levenstein = require('./lib/levenstein');
 //var twit = require('twit');
 
 var log = function(message){
-  if(message && message.length > 0)
-    console.log(new Date().toLocaleString()+": "+message);
-  else 
+  if(message && message.length > 0){
+    var date = new Date();
+    var date_string = date.getFullYear()+'.'+(date.getMonth()+1)+'.'+date.getDate()+'-'+date.getHours()+':'+date.getMinutes();
+    console.log(date_string+" | "+message);
+  }else{ 
     console.log()
+  }
 }
 log("Starting Twitter Bot - AnimatorsPal");
 log("waiting for: "+searchqueries.track)
@@ -54,9 +57,7 @@ setInterval(function(){
 }, 71000);
 
 // every hour look if we have more than a certain amount of tweets
-setInterval(cutTweets,360000);
-
-
+setInterval(cutTweets,900000);
 
 
 function connect(){
@@ -93,11 +94,12 @@ function connect(){
       log(tweet.text);
 
       var retweetIt = true;
-      if(isRetweet(tweet)
+      if( isRetweet(tweet)
         ||checkSimilarUrls(tweet)
         ||isReplyOrMessage(tweet)
         ||wasRetweetedRecently(tweet)
         ||sameText(tweet)
+        ||similarText(tweet)
         ){
         retweetIt = false;
       }
@@ -181,6 +183,35 @@ function wasRetweetedRecently(tweet){
   return false;
 }
 
+function similarText(tweet){
+  var text = tweet.text;
+  // don't check short text
+  if (text.length<50){
+    return false;
+  }
+  var nearest = 100;
+  var ntext = "";
+  for(var i in tweets){
+    var text2 = tweets[i].text;
+    // how different is the text
+    var diff = levenstein.difference(text, text2);
+    // percentage
+    var ratio = diff/text.length;
+    // debug nearest matches
+    if(nearest>ratio){
+      nearest=ratio;
+      ntext=text2;
+    }
+    if ( ratio < 0.23 ){
+      log("-> ["+ratio+"] tweet to similar to: " + text2)
+      return true;
+    }
+  }
+
+  log("Nearest match was: " + nearest + " | "+ntext)
+  return false
+}
+
 function sameText(tweet){
   var text = tweet.text;
   var urls = tweet.entities.urls;
@@ -209,7 +240,7 @@ function sameText(tweet){
  * @return {[type]}
  */
 function cutTweets(){
-  log("... Time to cleanup a little? ...");
+  log("@@@ CLEANUP @@@");
   if(tweets.length>tweetsLimit-cutBy){
     log("- - - Trim list of tweets! - - -");
     tweets.splice(0, cutBy);
