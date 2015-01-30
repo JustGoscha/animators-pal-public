@@ -202,7 +202,7 @@ function similarText(tweet){
       nearest=ratio;
       ntext=text2;
     }
-    if ( ratio < 0.3 ){
+    if ( ratio < 0.34 ){
       log("-> ["+ratio+"] tweet to similar to: " + text2)
       return true;
     }
