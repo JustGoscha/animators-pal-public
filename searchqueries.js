@@ -31,7 +31,6 @@ module.exports = {
     "animator stopmotion",
     "animator stop motion",
     "animators animation",
-
     "animated short film -cgi -3d"
 
 
@@ -39,12 +38,16 @@ module.exports = {
   follow: [
     "40436619", // @catsuka - animation blog/magazine
     "606663038", // @AnimationBreaks
-    "14466815"
+    "14466815",
+    "89481728", // @animadetv
+    "420286487"
   ],
   followed: [
     "@catsuka",
     "@AnimationBreaks",
-    "@motionographer"
+    "@motionographer",
+    "@animadetv",
+    "@joyybox"
   ]
 }
 
