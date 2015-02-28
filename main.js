@@ -365,16 +365,16 @@ function getFriendsWhoDontFollowYouBack() {
           ripeToUnfollow.push(friend)
         }
       }
-      log("All ready to unfollow:" + ripeToUnfollow);
+      //log("All ready to unfollow:" + ripeToUnfollow);
+      log("UPDATE people to unfollow!");
     });
   });
 }
 
 function unfollowRandom(){
   // randomize if unfollow or not
-  if (Math.random()<0.2){
+  if (Math.random()<0.1){
     var index = Math.floor(ripeToUnfollow.length * Math.random());
-    log("UNFOLLOW index: "+ index);
     twitter.post('friendships/destroy', { user_id: ripeToUnfollow[index] }, function (err, data, response) {
       if(err){
         log("- - - unfollow ERROR: " + err);
