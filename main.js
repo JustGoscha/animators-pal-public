@@ -56,9 +56,15 @@ setInterval(function(){
   }
 }, 71000);
 
-// every hour look if we have more than a certain amount of tweets
-setInterval(cutTweets,900000);
+var ripeToUnfollow = [];
+getFriendsWhoDontFollowYouBack()
+setInterval(getFriendsWhoDontFollowYouBack, 1000000);
 
+// every hour look if we have more than a certain amount of tweets
+setInterval(cutTweets,1800000);
+
+// check every x min to
+setInterval(unfollowRandom, 80000);
 
 function connect(){
 
@@ -114,7 +120,7 @@ function connect(){
 
   });
   stream.on('connected', function (response) {
-    //log("- - - Connected - - - ");
+    // log("- - - Connected - - - ");
   });
 }
 
@@ -303,14 +309,14 @@ function dispatchQueue() {
 }
 
 function follow (tweet) {
-  if(credentials.production){
+  // if(credentials.production){
     twitter.post('friendships/create', { user_id: tweet.user.id_str }, function (err, data, response) {
       // log(data);
       if(err){
         log("- - - follow ERROR: " + err);
       }
     });
-  }
+  // }
 }
 
 function manualRetweet(tweet){
@@ -324,7 +330,7 @@ function manualRetweet(tweet){
 }
 
 function retweet(tweet){
-  if(credentials.production){
+  // if(credentials.production){
     // use id_str for everything because of stupid JS
     twitter.post('statuses/retweet/:id', { id: tweet.id_str }, function (err, data, response) {
       // log(data);
@@ -332,6 +338,52 @@ function retweet(tweet){
         log("- - - retweet ERROR: " + err);
       }
     });
+  // }
+}
+
+function getFriendsWhoDontFollowYouBack() {
+  ripeToUnfollow = [];
+  twitter.get('friends/ids', { screen_name: credentials.screen_name, stringify_ids: true, count: 5000},  function (err, data, response) {
+
+    var friends = data.ids;
+    //log("Friends:" + data.ids);
+
+    twitter.get('followers/ids', { screen_name: credentials.screen_name, stringify_ids: true, count: 5000},  function (err, data, response) {
+      var followers = data.ids;
+      //log("Followers:"+data.ids);
+      for(var i in friends){
+        var friend = friends[i];
+        var guilty = true;
+        for(var j in followers){
+          if(friend == followers[j]){
+            //log("Duplicate:" +friend);
+            guilty = false;
+            break;
+          }
+        }
+        if(guilty){
+          ripeToUnfollow.push(friend)
+        }
+      }
+      log("All ready to unfollow:" + ripeToUnfollow);
+    });
+  });
+}
+
+function unfollowRandom(){
+  // randomize if unfollow or not
+  if (Math.random()<0.2){
+    var index = Math.floor(ripeToUnfollow.length * Math.random());
+    log("UNFOLLOW index: "+ index);
+    twitter.post('friendships/destroy', { user_id: ripeToUnfollow[index] }, function (err, data, response) {
+      if(err){
+        log("- - - unfollow ERROR: " + err);
+      } else {
+        log("X_X_X UNFOLLOWED: " + data.name + " id: " + ripeToUnfollow[index]);
+      }
+      ripeToUnfollow.splice(index, 1);
+    });
+    log("UNFOLLOW: " + ripeToUnfollow[index]);
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "AnimatorPal",
-  "version": "0.1.140925",
+  "version": "0.1.150228",
   "description": "A twitter bot, for animators",
   "main": "main.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "node main.js"
   },
   "dependencies": {
-    "twit": "~1.1.18"
+    "twit": "~1.1.20"
   },
   "author": "Georg Graf"
 }

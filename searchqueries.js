@@ -40,14 +40,14 @@ module.exports = {
     "606663038", // @AnimationBreaks
     "14466815",
     "89481728", // @animadetv
-    "420286487"
+    // "420286487"
   ],
   followed: [
     "@catsuka",
     "@AnimationBreaks",
     "@motionographer",
-    "@animadetv",
-    "@joyybox"
+    "@animadetv"
+    // "@joyybox"
   ]
 }
 
