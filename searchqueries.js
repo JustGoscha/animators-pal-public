@@ -16,7 +16,10 @@ module.exports = {
     "animation stop motion",
     "drawing animation",
     "#handdrawnanimation",
-
+    "#indiedev animation",
+    "#gamedev animation",
+    "sprite animation",
+    "pixelart animation",
     "animator job",
     "animation job",
     "drawing animator",
@@ -32,8 +35,6 @@ module.exports = {
     "animator stop motion",
     "animators animation",
     "animated short film -cgi -3d"
-
-
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
