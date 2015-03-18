@@ -344,29 +344,36 @@ function retweet(tweet){
 function getFriendsWhoDontFollowYouBack() {
   ripeToUnfollow = [];
   twitter.get('friends/ids', { screen_name: credentials.screen_name, stringify_ids: true, count: 5000},  function (err, data, response) {
+    var friends;
+    if(data && !err){
+      friends = data.ids; 
+    } else {
+      console.log("ERROR: some error happened")
+    }
 
-    var friends = data.ids;
     //log("Friends:" + data.ids);
 
     twitter.get('followers/ids', { screen_name: credentials.screen_name, stringify_ids: true, count: 5000},  function (err, data, response) {
-      var followers = data.ids;
-      //log("Followers:"+data.ids);
-      for(var i in friends){
-        var friend = friends[i];
-        var guilty = true;
-        for(var j in followers){
-          if(friend == followers[j]){
-            //log("Duplicate:" +friend);
-            guilty = false;
-            break;
+      if(!err && data){
+        var followers = data.ids;
+        //log("Followers:"+data.ids);
+        for(var i in friends){
+          var friend = friends[i];
+          var guilty = true;
+          for(var j in followers){
+            if(friend == followers[j]){
+              //log("Duplicate:" +friend);
+              guilty = false;
+              break;
+            }
+          }
+          if(guilty){
+            ripeToUnfollow.push(friend)
           }
         }
-        if(guilty){
-          ripeToUnfollow.push(friend)
-        }
+        //log("All ready to unfollow:" + ripeToUnfollow);
+        log("UPDATE people to unfollow!");
       }
-      //log("All ready to unfollow:" + ripeToUnfollow);
-      log("UPDATE people to unfollow!");
     });
   });
 }
