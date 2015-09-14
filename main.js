@@ -316,11 +316,11 @@ function doRetweet(tweet){
 
 function dispatchQueue() {
   log("- - - Dispatch from queue - - -");
-  if(counter<10 && counter>0){
+  if(counter<LIMIT && queue.length>0){
     doRetweet(queue.pop());
     setInterval(dispatchQueue(),20000);
   } else {
-    log("- - - Stop from queue - - -");
+    log("- - - Stop Dispatching from queue - - -");
   }
 
 }
