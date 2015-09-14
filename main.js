@@ -21,7 +21,7 @@ var appStatus = {
   reconnects: 0
 }
 
-var limit = 15;
+var limit = 3;
 var twitter = new twit(credentials);
 
 // twitter.get('search/tweets', { q: '@gkurkdjian animation since:2014-09-11', count: 20 }, function(err, data, response) {
