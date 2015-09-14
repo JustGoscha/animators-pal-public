@@ -318,7 +318,7 @@ function dispatchQueue() {
   log("- - - Dispatch from queue - - -");
   if(counter<LIMIT && queue.length>0){
     doRetweet(queue.pop());
-    setInterval(dispatchQueue(),20000);
+    setTimeout(dispatchQueue, 60000);
   } else {
     log("- - - Stop Dispatching from queue - - -");
   }
