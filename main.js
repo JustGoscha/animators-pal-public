@@ -21,7 +21,8 @@ var appStatus = {
   reconnects: 0
 }
 
-var limit = 3;
+var TWITTER_TIMEFRAME = 15;
+var LIMIT = 3;
 var twitter = new twit(credentials);
 
 // twitter.get('search/tweets', { q: '@gkurkdjian animation since:2014-09-11', count: 20 }, function(err, data, response) {
@@ -51,15 +52,18 @@ var maxQueue = 30
  */
 var counter = 0;
 
+
+var decreaseInterval = TWITTER_TIMEFRAME/LIMIT * 1000 * 60;
+
 // decrease counter every minute
 setInterval(function(){
   if(counter>0){
     counter--;
-    if(counter <= 5 && queue.length>0){
+    if(counter <= LIMIT && queue.length>0){
       dispatchQueue();
     }
   }
-}, 71000);
+}, decreaseInterval);
 
 var ripeToUnfollow = [];
 getFriendsWhoDontFollowYouBack()
@@ -97,9 +101,9 @@ function connect(){
     log("- - - Warning - - - ");
     log(warningMessage);
   });
-  stream.on('limit', function (limitMessage) {
+  stream.on('limit', function (LIMITMessage) {
     log("- - - Limit - - - ");
-    log(limitMessage);
+    log(LIMITMessage);
   });
   stream.on('reconnect', function (request, response, connectInterval) {
     log("- - - Reconnect ["+ appStatus.reconnects++ +"] - - - ");
@@ -289,7 +293,7 @@ function followTweeter(tweet){
  * @return {[type]}
  */
 function doRetweet(tweet){
-  if(counter<limit){
+  if(counter<LIMIT){
     counter++;
     if(tweet.entities.urls.length>0){
       log(" - - - RETWEET IT - - -"); // manual retweet turned off...
