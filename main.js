@@ -66,7 +66,7 @@ getFriendsWhoDontFollowYouBack()
 setInterval(getFriendsWhoDontFollowYouBack, 1000000);
 
 // every hour look if we have more than a certain amount of tweets
-setInterval(cutTweets,1800000);
+setInterval(cutTweets, 1800000);
 
 // check every x min to
 setInterval(unfollowRandom, 80000);
@@ -274,7 +274,7 @@ function cutTweets(){
 function followTweeter(tweet){
   // don't follow everybody... 
   if(!tweet.user.following){
-    if(Math.random()>0.8){  
+    if(Math.random()>0.95){  
         log("* * * Yeahy! Follow the user! * * *");
         follow(tweet);
       }
@@ -393,7 +393,7 @@ function getFriendsWhoDontFollowYouBack() {
 
 function unfollowRandom(){
   // randomize if unfollow or not
-  if (Math.random()<0.1){
+  if (Math.random()<0.02){
     var index = Math.floor(ripeToUnfollow.length * Math.random());
     if(ripeToUnfollow[index] != undefined){
       log("UNFOLLOW: " + ripeToUnfollow[index]);
