@@ -111,34 +111,36 @@ function connect(){
   stream.on('connect', function (response) {
     if(appStatus.reconnects == 0){
       log("- - - Connect - - - ");
-      stream.on('tweet', function (tweet) {
-        log(new Date());
-        log("from: "+tweet.user.name + " tweet_id:" + tweet.id_str);
-        log(tweet.text);
-
-        var retweetIt = true;
-        if( isRetweet(tweet)
-          ||checkSimilarUrls(tweet)
-          ||isReplyOrMessage(tweet)
-          ||wasRetweetedRecently(tweet)
-          ||sameText(tweet)
-          ||similarText(tweet)
-          ){
-          retweetIt = false;
-        }
-
-        if(retweetIt){
-          doRetweet(tweet);
-          followTweeter(tweet);
-        }
-        log('');
-
-      });
+      stream.on('tweet', onIncomingTweet);
     }
   });
   stream.on('connected', function (response) {
     // log("- - - Connected - - - ");
   });
+}
+
+function onIncomingTweet(tweet) {
+  log(new Date());
+  log("from: "+tweet.user.name + " tweet_id:" + tweet.id_str);
+  log(tweet.text);
+
+  var retweetIt = true;
+  if( isRetweet(tweet)
+    ||checkSimilarUrls(tweet)
+    ||isReplyOrMessage(tweet)
+    ||wasRetweetedRecently(tweet)
+    ||sameText(tweet)
+    ||similarText(tweet)
+    ){
+    retweetIt = false;
+  }
+
+  if(retweetIt){
+    doRetweet(tweet);
+    followTweeter(tweet);
+  }
+  log('');
+
 }
 
 function isRetweet(tweet) {
@@ -317,7 +319,8 @@ function doRetweet(tweet){
 function dispatchQueue() {
   log("- - - Dispatch from queue - - -");
   if(counter<LIMIT && queue.length>0){
-    doRetweet(queue.pop());
+    onIncomingTweet(queue.pop());
+    // doRetweet(queue.pop());
     setTimeout(dispatchQueue, 60000);
   } else {
     log("- - - Stop Dispatching from queue - - -");
