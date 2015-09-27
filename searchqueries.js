@@ -1,5 +1,6 @@
 module.exports = {
   track: [
+    "animation",
     "penciltest animation",
     "#traditionalanimation",
     "traditional animation",
@@ -49,6 +50,9 @@ module.exports = {
     "@motionographer",
     "@animadetv"
     // "@joyybox"
+  ],
+  urls: [
+    "vimeo.com"
   ]
 }
 

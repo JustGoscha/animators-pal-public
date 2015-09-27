@@ -4,17 +4,35 @@ var searchqueries = require('./searchqueries');
 var levenstein = require('./lib/levenstein');
 //var twit = require('twit');
 
-var log = function(message){
+var logComplete = function(){
+  console.log(logMessage);
+  logMessage = "";
+}
+var logDelete = function(){
+  logMessage = "";
+}
+
+var logDirect = function(message){
   if(message && message.length > 0){
     var date = new Date();
     var date_string = date.getFullYear()+'.'+(date.getMonth()+1)+'.'+date.getDate()+'-'+date.getHours()+':'+date.getMinutes();
     console.log(date_string+" | "+message);
-  }else{ 
-    console.log()
+  } else {
+    console.log();
   }
 }
-log("Starting Twitter Bot - AnimatorsPal");
-log("waiting for: "+searchqueries.track)
+
+var log = function(message){
+  if(message && message.length > 0){
+    var date = new Date();
+    var date_string = date.getFullYear()+'.'+(date.getMonth()+1)+'.'+date.getDate()+'-'+date.getHours()+':'+date.getMinutes();
+    logMessage += date_string+" | "+message + "\n";
+  } else {
+    logMessage += "\n";
+  }
+}
+logDirect("Starting Twitter Bot - AnimatorsPal");
+logDirect("waiting for: "+searchqueries.track)
 
 var appStatus = {
   connectRuns: 0,
@@ -25,6 +43,7 @@ var TWITTER_TIMEFRAME = 15;
 var LIMIT = 3;
 var twitter = new twit(credentials);
 
+var logMessage = "";
 // twitter.get('search/tweets', { q: '@gkurkdjian animation since:2014-09-11', count: 20 }, function(err, data, response) {
 //   for(var i in data.statuses){
 //     log(i)
@@ -78,7 +97,7 @@ setInterval(unfollowRandom, 80000);
 function connect(){
   appStatus.reconnects = 0;
   appStatus.connectRuns++;
-  log("Running connect function..." + appStatus.connectRuns + " times");
+  logDirect("Running connect function..." + appStatus.connectRuns + " times");
 
   //
   //  filter the twitter public stream by the word 'mango'.
@@ -89,28 +108,28 @@ function connect(){
   });
 
   stream.on('disconnect', function (disconnectMessage) {
-    log("- - - Disconnect - - - ");
-    log(disconnectMessage);
+    logDirect("- - - Disconnect - - - ");
+    logDirect(disconnectMessage);
   });
 
   stream.on('error', function(error){
-    log("! ! ! ERROR ! ! !");
+    logDirect("! ! ! ERROR ! ! !");
     connect();
   })
   stream.on('warning', function (warningMessage) {
-    log("- - - Warning - - - ");
-    log(warningMessage);
+    logDirect("- - - Warning - - - ");
+    logDirect(warningMessage);
   });
   stream.on('limit', function (LIMITMessage) {
-    log("- - - Limit - - - ");
-    log(LIMITMessage);
+    logDirect("- - - Limit - - - ");
+    logDirect(LIMITMessage);
   });
   stream.on('reconnect', function (request, response, connectInterval) {
-    log("- - - Reconnect ["+ appStatus.reconnects++ +"] - - - ");
+    logDirect("- - - Reconnect ["+ appStatus.reconnects++ +"] - - - ");
   });
   stream.on('connect', function (response) {
     if(appStatus.reconnects == 0){
-      log("- - - Connect - - - ");
+      logDirect("- - - Connect - - - ");
       stream.on('tweet', onIncomingTweet);
     }
   });
@@ -120,7 +139,6 @@ function connect(){
 }
 
 function onIncomingTweet(tweet) {
-  log(new Date());
   log("from: "+tweet.user.name + " tweet_id:" + tweet.id_str);
   log(tweet.text);
 
@@ -131,6 +149,7 @@ function onIncomingTweet(tweet) {
     ||wasRetweetedRecently(tweet)
     ||sameText(tweet)
     ||similarText(tweet)
+    ||!mediaOrLink(tweet)
     ){
     retweetIt = false;
   }
@@ -138,14 +157,17 @@ function onIncomingTweet(tweet) {
   if(retweetIt){
     doRetweet(tweet);
     followTweeter(tweet);
+    logComplete();
   }
-  log('');
+  logDelete();
+  log("");
 
 }
 
 function isRetweet(tweet) {
   if (tweet.text.indexOf("RT @") === 0){
     log("-> Is a retweet");
+    logDelete();
     return true;
   } 
   return false;
@@ -186,6 +208,56 @@ function checkSimilarUrls(tweet){
 
   return similar;
 }
+function mediaOrLink(tweet){
+  log("...has suitable media or link?");
+  if(hasMedia(tweet)||hasLink(tweet)){
+    log("has suitable media or link - TRUE");
+    return true;
+  } 
+  log("has suitable media or link - FALSE");
+
+  return false;
+}
+
+function hasLink(tweet){
+
+  for(var i in tweet.entities.urls){
+    log(tweet.entities.urls[i]);
+
+    if(tweet.entities.urls[i].expanded_url){
+      var url = tweet.entities.urls[i].expanded_url;
+      log("-> expanded url: "+url);
+      var check = false;
+      for(var j in searchqueries.urls){
+        var urlPart = searchqueries.urls[j];
+        if(url.indexOf(urlPart)>=0){
+          check = true;
+          log("-> has link from: " + urlPart);
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function hasMedia(tweet){
+  if(tweet.entities.media && tweet.entities.media.length>0){
+    // log("--> media: " + JSON.stringify(tweet.entities.media));
+    for(var i in tweet.entities.media){
+      var media = tweet.entities.media[i].media_url;
+      log("-> expanded media url: " + media);
+      if(media.indexOf("tweet_video_thumb")>=0){
+        log("-> has media .gif");
+        return true;
+      }
+    }
+  } else {
+    log("-> no media");
+  }
+  
+  return false;
+}
 
 function isReplyOrMessage(tweet){
   for(var i in searchqueries.followed){
@@ -198,7 +270,7 @@ function isReplyOrMessage(tweet){
 }
 
 function wasRetweetedRecently(tweet){
-  for(var i = 1; i<tweets.length && i<=30; i++){
+  for(var i = 1; i<tweets.length && i<=10; i++){
     var j = tweets.length-i;
     if (tweets[j].user.name == tweet.user.name){
       log("->user was retweeted recently");
@@ -267,7 +339,7 @@ function sameText(tweet){
 function cutTweets(){
   log("@@@ CLEANUP @@@");
   if(tweets.length>tweetsLimit-cutBy){
-    log("- - - Trim list of tweets! - - -");
+    logDirect("- - - Trim list of tweets! - - -");
     tweets.splice(0, cutBy);
   }
 }
@@ -281,7 +353,7 @@ function followTweeter(tweet){
   // don't follow everybody... 
   if(!tweet.user.following){
     if(Math.random()>0.97){  
-        log("* * * Yeahy! Follow the user! * * *");
+        logDirect("* * * Yeahy! Follow the user! * * *");
         follow(tweet);
       }
   } else {
@@ -297,13 +369,10 @@ function followTweeter(tweet){
 function doRetweet(tweet){
   if(counter<LIMIT){
     counter++;
-    if(tweet.entities.urls.length>0){
-      log(" - - - RETWEET IT - - -"); // manual retweet turned off...
-      retweet(tweet);
-    } else {
-      log(" - - - RETWEET IT - - -");
-      retweet(tweet);
-    }
+
+    log(" - - - RETWEET IT - - -");
+    retweet(tweet);
+
     if (tweet.entities.media && tweet.entities.media.length>0) {
       log("-> has media, but not link!");
     } 
@@ -317,13 +386,13 @@ function doRetweet(tweet){
 
 
 function dispatchQueue() {
-  log("- - - Dispatch from queue - - -");
+  logDirect("- - - Dispatch from queue - - -");
   if(counter<LIMIT && queue.length>0){
     onIncomingTweet(queue.pop());
     // doRetweet(queue.pop());
     setTimeout(dispatchQueue, 60000);
   } else {
-    log("- - - Stop Dispatching from queue - - -");
+    logDirect("- - - Stop Dispatching from queue - - -");
   }
 
 }
@@ -333,7 +402,7 @@ function follow (tweet) {
     twitter.post('friendships/create', { user_id: tweet.user.id_str }, function (err, data, response) {
       // log(data);
       if(err){
-        log("- - - follow ERROR: " + err);
+        logDirect("- - - follow ERROR: " + err);
       }
     });
   // }
@@ -355,7 +424,7 @@ function retweet(tweet){
     twitter.post('statuses/retweet/:id', { id: tweet.id_str }, function (err, data, response) {
       // log(data);
       if(err){
-        log("- - - retweet ERROR: " + err);
+        logDirect("- - - retweet ERROR: " + err);
       }
     });
   // }
@@ -392,7 +461,7 @@ function getFriendsWhoDontFollowYouBack() {
           }
         }
         //log("All ready to unfollow:" + ripeToUnfollow);
-        log("UPDATE people to unfollow!");
+        logDirect("UPDATE people to unfollow!");
       }
     });
   });
@@ -403,13 +472,13 @@ function unfollowRandom(){
   if (Math.random()<0.02){
     var index = Math.floor(ripeToUnfollow.length * Math.random());
     if(ripeToUnfollow[index] != undefined){
-      log("UNFOLLOW: " + ripeToUnfollow[index]);
+      logDirect("UNFOLLOW: " + ripeToUnfollow[index]);
       
       twitter.post('friendships/destroy', { user_id: ripeToUnfollow[index] }, function (err, data, response) {
         if(err){
-          log("- - - unfollow ERROR: " + err);
+          logDirect("- - - unfollow ERROR: " + err);
         } else {
-          log("X_X_X UNFOLLOWED: " + data.name + " id: " + ripeToUnfollow[index]);
+          logDirect("X_X_X UNFOLLOWED: " + data.name + " id: " + ripeToUnfollow[index]);
         }
         ripeToUnfollow.splice(index, 1);
       });
