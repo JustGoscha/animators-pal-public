@@ -40,7 +40,7 @@ var appStatus = {
 }
 
 var TWITTER_TIMEFRAME = 15;
-var LIMIT = 3;
+var LIMIT = 5;
 var twitter = new twit(credentials);
 
 var logMessage = "";
@@ -246,16 +246,30 @@ function hasMedia(tweet){
     // log("--> media: " + JSON.stringify(tweet.entities.media));
     for(var i in tweet.entities.media){
       var media = tweet.entities.media[i].media_url;
-      log("-> expanded media url: " + media);
-      if(media.indexOf("tweet_video_thumb")>=0){
-        log("-> has media .gif");
+      if(hasGif(media) || hasImage(media)){
         return true;
       }
     }
   } else {
     log("-> no media");
   }
-  
+  return false;
+}
+
+function hasGif(media){
+  log("-> expanded media url: " + media);
+  if(media.indexOf("tweet_video_thumb")>=0){
+    log("-> has media .gif");
+    return true;
+  }
+  return false;
+}
+
+function hasImage(media){
+  if( media.indexOf(".png")+media.indexOf(".jpg") >= 0){
+    log("-> has media .jpg/.png");
+    return true;
+  }
   return false;
 }
 
@@ -354,7 +368,9 @@ function followTweeter(tweet){
   if(!tweet.user.following){
     if(Math.random()>0.97){  
         logDirect("* * * Yeahy! Follow the user! * * *");
-        follow(tweet);
+        setTimeout(function(){
+          follow(tweet); // follow sometime within the hour
+        }, Math.random()*1000*60*60);
       }
   } else {
     log("-> Already following user...");

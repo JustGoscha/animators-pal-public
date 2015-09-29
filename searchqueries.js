@@ -1,6 +1,20 @@
 module.exports = {
   track: [
-    "animation",
+    "#animation",
+    "animation short",
+    "animation movie",
+    "animation video",
+    "animation drawn",
+    "animation illustration",
+    "animation film",
+    "animated short",
+    "animated movie",
+    "animated film",
+    "animated illustration",
+    "animated drawing",
+    "animated draw",
+    "animation frame",
+    "indie animation",
     "penciltest animation",
     "#traditionalanimation",
     "traditional animation",
@@ -35,7 +49,10 @@ module.exports = {
     "animator stopmotion",
     "animator stop motion",
     "animators animation",
-    "animated short film -cgi -3d"
+    "animated short film -cgi -3d",
+    "animation frame by frame",
+    "illustration frame by frame",
+    "draw frame by frame"
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
