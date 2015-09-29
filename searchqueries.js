@@ -1,15 +1,17 @@
 module.exports = {
   track: [
     "#animation",
-    "animation short",
-    "animation movie",
-    "animation video",
+    "animated #shortfilm",
+    "animation #shortfilm",
+    "animation newgrounds",
+    // "animation movie",
+    // "animation video",
     "animation drawn",
     "animation illustration",
-    "animation film",
-    "animated short",
-    "animated movie",
-    "animated film",
+    // "animation film",
+    "animated short movie",
+    // "animated movie",
+    // "animated film",
     "animated illustration",
     "animated drawing",
     "animated draw",
@@ -69,7 +71,9 @@ module.exports = {
     // "@joyybox"
   ],
   urls: [
-    "vimeo.com"
+    "vimeo.com",
+    "newgrounds.com",
+    "showmetheanimation.com"
   ]
 }
 

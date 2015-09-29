@@ -246,7 +246,7 @@ function hasMedia(tweet){
     // log("--> media: " + JSON.stringify(tweet.entities.media));
     for(var i in tweet.entities.media){
       var media = tweet.entities.media[i].media_url;
-      if(hasGif(media) || hasImage(media)){
+      if(hasGif(media)){
         return true;
       }
     }
@@ -377,6 +377,15 @@ function followTweeter(tweet){
   }
 }
 
+function randomTimeBetween(fromSeconds, toSeconds){
+  if (toSeconds<fromSeconds){
+    return 0;
+  }
+  var from = fromSeconds*1000;
+  var to = toSeconds*1000 - from;
+  return from + Math.random()*to;
+}
+
 /**
  * Retweet the message
  * @param  {[type]} tweet
@@ -386,8 +395,11 @@ function doRetweet(tweet){
   if(counter<LIMIT){
     counter++;
 
-    log(" - - - RETWEET IT - - -");
-    retweet(tweet);
+    var randomTime = randomTimeBetween(0,120);
+    log(" - - - RETWEET IT - - - in "+randomTime/1000+"sec");
+    setTimeout(function(){
+      retweet(tweet);
+    }, randomTime);
 
     if (tweet.entities.media && tweet.entities.media.length>0) {
       log("-> has media, but not link!");
