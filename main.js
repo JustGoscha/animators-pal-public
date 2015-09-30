@@ -149,6 +149,7 @@ function onIncomingTweet(tweet) {
     ||wasRetweetedRecently(tweet)
     ||sameText(tweet)
     ||similarText(tweet)
+    ||checkBlocklist(tweet)
     ||!mediaOrLink(tweet)
     ){
     retweetIt = false;
@@ -321,6 +322,13 @@ function similarText(tweet){
 
   log("Nearest match was: " + nearest + " | "+ntext)
   return false
+}
+
+function checkBlocklist(tweet){
+  // look if some of the blocklist entries is in the tweet
+  return searchqueries.blocklist.some(function(blocked){
+    return tweet.text.indexOf(blocked) >= 0;
+  });
 }
 
 function sameText(tweet){

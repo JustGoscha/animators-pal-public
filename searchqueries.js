@@ -70,6 +70,9 @@ module.exports = {
     "@animadetv"
     // "@joyybox"
   ],
+  blocklist: [
+    "MarinaSweet"
+  ],
   urls: [
     "vimeo.com",
     "newgrounds.com",
