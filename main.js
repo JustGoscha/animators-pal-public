@@ -396,7 +396,7 @@ function doRetweet(tweet){
     counter++;
 
     var randomTime = randomTimeBetween(0,120);
-    log(" - - - RETWEET IT - - - in "+randomTime/1000+"sec");
+    log(" - - - RETWEET IT - - - in "+Math.floor(randomTime)/1000+"sec");
     setTimeout(function(){
       retweet(tweet);
     }, randomTime);
@@ -497,7 +497,7 @@ function getFriendsWhoDontFollowYouBack() {
 
 function unfollowRandom(){
   // randomize if unfollow or not
-  if (Math.random()<0.02){
+  if (Math.random()<0.01){
     var index = Math.floor(ripeToUnfollow.length * Math.random());
     if(ripeToUnfollow[index] != undefined){
       logDirect("UNFOLLOW: " + ripeToUnfollow[index]);

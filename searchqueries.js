@@ -73,7 +73,15 @@ module.exports = {
   urls: [
     "vimeo.com",
     "newgrounds.com",
-    "showmetheanimation.com"
+    "showmetheanimation.com",
+    "motionographer.com",
+    "awn.com",
+    "gph.is",
+    "cartoonbrew.com"
+    // ,
+    // "youtu.be",
+    // "youtube.com"
+
   ]
 }
 
