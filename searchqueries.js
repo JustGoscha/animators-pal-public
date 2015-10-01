@@ -71,7 +71,11 @@ module.exports = {
     // "@joyybox"
   ],
   blocklist: [
-    "MarinaSweet"
+    "MarinaSweet",
+    "Marina Sweet",
+    "clips4sale",
+    "Saudi Mistress",
+    "SaudiMistress"
   ],
   urls: [
     "vimeo.com",
