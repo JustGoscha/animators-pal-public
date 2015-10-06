@@ -160,8 +160,10 @@ function onIncomingTweet(tweet) {
     followTweeter(tweet);
     logComplete();
   }
+
+  // logComplete();
   logDelete();
-  log("");
+  // log("");
 
 }
 
@@ -374,7 +376,7 @@ function cutTweets(){
 function followTweeter(tweet){
   // don't follow everybody... 
   if(!tweet.user.following){
-    if(Math.random()>0.97){  
+    if(Math.random()>0.77){  
         logDirect("* * * Yeahy! Follow the user! * * *");
         setTimeout(function(){
           follow(tweet); // follow sometime within the hour
