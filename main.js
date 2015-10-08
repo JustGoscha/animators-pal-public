@@ -329,7 +329,17 @@ function similarText(tweet){
 function checkBlocklist(tweet){
   // look if some of the blocklist entries is in the tweet
   return searchqueries.blocklist.some(function(blocked){
-    return tweet.text.indexOf(blocked) >= 0;
+    var truths = 0;
+
+    // check username, links and text
+    truths += tweet.text.toLowerCase().indexOf(blocked.toLowerCase())>=0;
+    truths += tweet.entities.urls.some(function(url){
+      return url.expanded_url.toLowerCase().indexOf(blocked.toLowerCase())>=0;
+    });
+    truths += tweet.text.indexOf(blocked) >= 0;
+    truths += tweet.user.name.toLowerCase().indexOf(blocked.toLowerCase()) >= 0
+
+    return truths>0;
   });
 }
 
