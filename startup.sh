@@ -5,10 +5,14 @@
 # -e : error log
 # --spinSleepTime :time between restarts
 
-LOGDIR=/opt/node-servers/animator-pal/logs
+#LOGDIR=/opt/node-servers/animator-pal/logs
+# LOGDIR=~/dev/animator-pal/logs
 
-rm ${LOGDIR}/forever.log
-rm ${LOGDIR}/error.log
-rm ${LOGDIR}/server.log
+# rm ${LOGDIR}/pm2.log
+# rm ${LOGDIR}/forever.log
+# rm ${LOGDIR}/error.log
+# rm ${LOGDIR}/server.log
 
-forever -o ${LOGDIR}/server.log -l ${LOGDIR}/forever.log -e ${LOGDIR}/error.log --spinSleepTime 5000 start main.js 
+# forever -o ${LOGDIR}/server.log -l ${LOGDIR}/forever.log -e ${LOGDIR}/error.log --spinSleepTime 5000 start main.js 
+# 
+node_modules/pm2/bin/pm2 start animators-pal.json
