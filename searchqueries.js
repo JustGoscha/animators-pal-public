@@ -54,7 +54,9 @@ module.exports = {
     "animated short film -cgi -3d",
     "animation frame by frame",
     "illustration frame by frame",
-    "draw frame by frame"
+    "draw frame by frame",
+
+    "#АНИМАЦИЯ"
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
