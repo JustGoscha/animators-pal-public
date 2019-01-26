@@ -55,7 +55,8 @@ module.exports = {
     "animation frame by frame",
     "illustration frame by frame",
     "draw frame by frame",
-
+    "gobelins",
+    "#アニメーション",
     "#АНИМАЦИЯ"
   ],
   follow: [
@@ -64,6 +65,13 @@ module.exports = {
     "14466815",
     "89481728", // @animadetv
     // "420286487"
+    "1939963310", // masanobu_hiraoka
+    "3948413312", // the_real_tymo
+    "3948413312", // GeoffreyMaclean ‏
+    "1612085234", // GarethWong3
+    "915045830683377665", //littlemntnanim
+    "77457790", // rloubersanes
+    "86016563", // all_animated
   ],
   followed: [
     "@catsuka",
@@ -77,7 +85,10 @@ module.exports = {
     "Marina Sweet",
     "clips4sale",
     "Saudi Mistress",
-    "SaudiMistress"
+    "SaudiMistress",
+    "hentai", 
+    "rule34",
+    "nsfw"
   ],
   urls: [
     "vimeo.com",
