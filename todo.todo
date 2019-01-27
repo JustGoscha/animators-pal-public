@@ -1,0 +1,8 @@
+FAIL prevention:
+  ☐ logs are getting to long
+  ☐ logs same tweet multiple times... why?
+  ☐ after a few hours without tweets... try to reconnect
+  ☐ multiple connections open to twitter?...
+
+Listen for "follow" events: 
+  Retweet a random tweet with some media from the twitterer who just followed you
