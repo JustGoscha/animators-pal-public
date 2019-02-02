@@ -57,7 +57,11 @@ module.exports = {
     "draw frame by frame",
     "gobelins",
     "#アニメーション",
-    "#АНИМАЦИЯ"
+    "#АНИМАЦИЯ",
+    // VR
+    "#vranimation",
+    "quill animation",
+    "quillustration animation"
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
@@ -72,12 +76,14 @@ module.exports = {
     "915045830683377665", //littlemntnanim
     "77457790", // rloubersanes
     "86016563", // all_animated
+    "748524102105718784" // gorosart
   ],
   followed: [
     "@catsuka",
     "@AnimationBreaks",
     "@motionographer",
-    "@animadetv"
+    "@animadetv",
+    "@gorosart"
     // "@joyybox"
   ],
   blocklist: [
@@ -86,9 +92,10 @@ module.exports = {
     "clips4sale",
     "Saudi Mistress",
     "SaudiMistress",
-    "hentai", 
+    "hentai",
     "rule34",
-    "nsfw"
+    "nsfw",
+    "manyvids"
   ],
   urls: [
     "vimeo.com",
@@ -101,9 +108,8 @@ module.exports = {
     // ,
     // "youtu.be",
     // "youtube.com"
-
   ]
-}
+};
 
 // #handdrawn
 // #flashanimation
