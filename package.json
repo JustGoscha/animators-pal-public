@@ -1,15 +1,29 @@
 {
-  "name": "AnimatorPal",
+  "name": "animators-pal",
   "version": "0.1.150228",
   "description": "A twitter bot, for animators",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "postinstall": "npm build",
+    "build": "tsc --build tsconfig.json --pretty ",
+    "start": "node main.js",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
+    "inversify": "^5.0.1",
     "pm2": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
     "twit": "~1.1.20"
   },
-  "author": "Georg Graf"
+  "prettier": {
+    "semi": false,
+    "trailingComma": "all",
+    "tabWidth": 2
+  },
+  "author": "Georg Graf",
+  "devDependencies": {
+    "typescript": "^3.3.1",
+    "typescript-tslint-plugin": "^0.3.1"
+  }
 }
