@@ -7,14 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm build",
     "build": "tsc --build tsconfig.json --pretty ",
+    "build:watch": "tsc --build tsconfig.json --pretty --watch",
     "start": "node main.js",
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@types/twit": "^2.2.20",
     "inversify": "^5.0.1",
     "pm2": "^1.0.0",
     "reflect-metadata": "^0.1.13",
-    "twit": "~1.1.20"
+    "twit": "^2.2.11"
   },
   "prettier": {
     "semi": false,

@@ -1,9 +1,9 @@
 import { injectable } from "inversify"
 
 export interface ILogger {
-  info(msg: string): void
-  debug(msg: string): void
-  error(msg: string): void
+  info(msg?: string): void
+  debug(msg?: string): void
+  error(msg?: string): void
 }
 
 @injectable()
