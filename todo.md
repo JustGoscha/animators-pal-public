@@ -30,3 +30,7 @@ type emitters = {
   unfollow: TypedEventEmitter
 }
 ```
+
+-----
+Metrics: 
+Monitor likes, retweets, stats of certain kind of retweets

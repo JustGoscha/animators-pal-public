@@ -2,6 +2,7 @@ import { injectable } from "inversify"
 
 export interface ILogger {
   info(msg?: string): void
+  warn(msg?: string): void
   debug(msg?: string): void
   error(msg?: string): void
 }
@@ -18,21 +19,17 @@ export class Logger implements ILogger {
   error(msg: string): void {
     console.error(this.transform(msg))
   }
+  
+  warn(msg: string): void {
+    console.warn(this.transform(msg))
+  }
+  
 
   private transform = (message: string) => {
     let logMessage = ""
 
     var date = new Date()
-    var date_string =
-      date.getFullYear() +
-      "." +
-      (date.getMonth() + 1) +
-      "." +
-      date.getDate() +
-      "-" +
-      date.getHours() +
-      ":" +
-      date.getMinutes()
+    var date_string = date.toISOString()
     logMessage += date_string + " | " + message + "\n"
     return logMessage
   }

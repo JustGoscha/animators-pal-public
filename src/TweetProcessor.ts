@@ -24,7 +24,7 @@ export class TwitterStreamHandler {
   ) {
     const stream = this.twit.stream("statuses/filter", {
       track: config.track,
-      // follow: searchqueries.follow 🤷🏻‍♂️
+      follow: searchqueries.follow 
     })
 
     stream.on("disconnect", disconnectMessage => {
@@ -35,11 +35,10 @@ export class TwitterStreamHandler {
     stream.on("error", error => {
       this.logger.error(error)
       this.logger.info("! ! ! ERROR ! ! !")
-      connect()
       process.exit(1)
     })
     stream.on("warning", warningMessage => {
-      this.logger.info("- - - Warning - - - ")
+      this.logger.warn("- - - Warning - - - ")
       this.logger.info(warningMessage)
     })
     stream.on("limit", LIMITMessage => {
@@ -52,7 +51,7 @@ export class TwitterStreamHandler {
     stream.on("connect", () => {
       if (this.reconnects == 0) {
         this.logger.info("- - - Connect - - - ")
-        stream.on("tweet", onIncomingTweet)
+        stream.on("tweet", statusHandler)
       }
     })
     stream.on("connected", function() {})
