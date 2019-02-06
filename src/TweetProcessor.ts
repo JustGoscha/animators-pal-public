@@ -24,7 +24,7 @@ export class TwitterStreamHandler {
   ) {
     const stream = this.twit.stream("statuses/filter", {
       track: config.track,
-      follow: searchqueries.follow 
+      follow: searchqueries.follow,
     })
 
     stream.on("disconnect", disconnectMessage => {
@@ -102,16 +102,22 @@ export class TweetProcessor implements ITweetProcessor {
 
 @injectable()
 export class Retweeter {
-  constructor(@inject(TYPES.twit) private twit: Twit) {}
+  constructor(
+    @inject(TYPES.twit) private twit: Twit,
+    @inject(TYPES.Logger) private logger: ILogger,
+  ) {}
 
+  counter = 0
+  // TODO move to config
+  LIMIT = 0
   /**
    * Retweet the message
    * @param  {[type]} tweet
    * @return {[type]}
    */
   doRetweet(tweet: Twit.Twitter.Status) {
-    if (counter < LIMIT) {
-      counter++
+    if (this.counter < LIMIT) {
+      this.counter++
 
       var randomTime = randomTimeBetween(0, 120)
       log(" - - - RETWEET IT - - - in " + Math.floor(randomTime) / 1000 + "sec")
@@ -123,7 +129,7 @@ export class Retweeter {
         log("-> has media, but not link!")
       }
       tweets.push(tweet)
-      log("tweeted: " + tweets.length + " counter: " + counter)
+      log("tweeted: " + tweets.length + " counter: " + this.counter)
     } else {
       log("<-- Pushed on QUEUE: " + queue.length)
       queue.push(tweet)

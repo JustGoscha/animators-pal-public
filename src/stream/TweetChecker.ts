@@ -9,49 +9,13 @@ export interface ITweetChecker {
   shouldRetweet(tweet: Twitter.Status): boolean
 }
 
-// const TweetFilters = {
-//   "isRetweet": ,
-//   "checkSimilarUrls": ,
-//   "isReplyOrMessage": ,
-//   "wasRetweetedRecently": ,
-//   "isSameText": ,
-//   "isSimilarText": ,
-//   "isInBlocklist": ,
-//   "isMediaOrLink": ,
-// }
-
-// const filterConfig = [
-//   "isRetweet",
-//   "checkSimilarUrls",
-//   "isReplyOrMessage",
-//   "wasRetweetedRecently",
-//   "isSameText",
-//   "isSimilarText",
-//   "isInBlocklist",
-//   "isMediaOrLink",
-// ]
-
-// type AvailableFilters =
+type FilterFunction = (tweet: Twitter.Status) => boolean
+type FilterRule = [string, boolean]
+type FilterPipelineConfig = FilterRule[]
 
 @injectable()
 export class TweetChecker implements ITweetChecker {
   constructor(@inject(TYPES.Logger) private logger: ILogger) {}
-  shouldRetweet(tweet: Twitter.Status) {
-    // measure total
-    // measure funnel
-    // should be configurable, too
-    return (
-      !this.isRetweet(tweet) &&
-      !this.checkSimilarUrls(tweet) &&
-      !this.isReplyOrMessage(tweet) &&
-      !this.wasRetweetedRecently(tweet) &&
-      !this.isSameText(tweet) &&
-      !this.isSimilarText(tweet) &&
-      !this.isInBlocklist(tweet) &&
-      this.isMediaOrLink(tweet)
-    )
-    // measure passing
-  }
 
   isRetweet = (tweet: Twitter.Status) => {
     if (tweet.text && tweet.text.indexOf("RT @") === 0) {
@@ -61,7 +25,7 @@ export class TweetChecker implements ITweetChecker {
     return false
   }
 
-  checkSimilarUrls = (tweet: Twitter.Status) => {
+  isSimilarUrl = (tweet: Twitter.Status) => {
     let similar = false
     let urls = tweet.entities.urls
 
@@ -113,10 +77,9 @@ export class TweetChecker implements ITweetChecker {
       if (url.expanded_url) {
         let expanded_url = url.expanded_url
         this.logger.info("-> expanded url: " + expanded_url)
-        for (let j in searchqueries.urls) {
-          let urlPart = searchqueries.urls[j]
-          if (expanded_url.indexOf(urlPart) >= 0) {
-            this.logger.info("-> has link from: " + urlPart)
+        for (let site of searchqueries.urls) {
+          if (expanded_url.indexOf(site) >= 0) {
+            this.logger.info("-> has link from: " + site)
             return true
           }
         }
@@ -267,5 +230,37 @@ export class TweetChecker implements ITweetChecker {
       }
     }
     return false
+  }
+
+  filterMapping: { [key: string]: FilterFunction } = {
+    isRetweet: this.isRetweet,
+    isSimilarUrl: this.isSimilarUrl,
+    isReplyOrMessage: this.isReplyOrMessage,
+    wasRetweetedRecently: this.wasRetweetedRecently,
+    isSameText: this.isSameText,
+    isSimilarText: this.isSimilarText,
+    isInBlocklist: this.isInBlocklist,
+    isMediaOrLink: this.isMediaOrLink,
+  }
+
+  filterPipelineConfig: FilterPipelineConfig = [
+    ["isRetweet", false],
+    ["isSimilarUrl", false],
+    ["isReplyOrMessage", false],
+    ["wasRetweetedRecently", false],
+    ["isSameText", false],
+    ["isSimilarText", false],
+    ["isInBlocklist", false],
+    ["isMediaOrLink", true],
+  ]
+
+  shouldRetweet(tweet: Twitter.Status) {
+    // measure total
+    // measure funnel
+    return this.filterPipelineConfig.every(
+      ([filterRule, shouldBe]) =>
+        this.filterMapping[filterRule](tweet) === shouldBe,
+    )
+    // measure passing
   }
 }
