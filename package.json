@@ -4,12 +4,12 @@
   "description": "A twitter bot, for animators",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm build",
     "build": "tsc --build tsconfig.json --pretty ",
     "build:watch": "tsc --build tsconfig.json --pretty --watch",
     "start": "node main.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "jest"
   },
   "dependencies": {
     "@types/twit": "^2.2.21",
@@ -25,7 +25,23 @@
   },
   "author": "Georg Graf",
   "devDependencies": {
+    "@types/jest": "^24.0.0",
+    "jest": "^24.1.0",
+    "ts-jest": "^23.10.5",
     "typescript": "^3.3.1",
     "typescript-tslint-plugin": "^0.3.1"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
   }
 }

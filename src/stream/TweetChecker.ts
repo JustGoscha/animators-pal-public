@@ -3,19 +3,35 @@ import { injectable, inject } from "inversify"
 import { searchqueries } from "../config/searchqueries"
 import { TYPES } from "../container.types"
 import { ILogger } from "../Logger"
+import { AppState } from "../AppState"
 const levenstein = require("../lib/levenstein.js")
 
 export interface ITweetChecker {
-  shouldRetweet(tweet: Twitter.Status): boolean
+  shouldRetweet(
+    tweet: Twitter.Status,
+    filterPipelineConfig?: FilterPipelineConfig,
+  ): boolean
 }
 
-type FilterFunction = (tweet: Twitter.Status) => boolean
-type FilterRule = [string, boolean]
-type FilterPipelineConfig = FilterRule[]
+export type FilterFunction = (tweet: Twitter.Status) => boolean
+export type FilterName =
+  | "isRetweet"
+  | "isSimilarUrl"
+  | "isReplyOrMessage"
+  | "wasRetweetedRecently"
+  | "isSameText"
+  | "isSimilarText"
+  | "isInBlocklist"
+  | "isMediaOrLink"
+export type FilterRule = [FilterName, boolean]
+export type FilterPipelineConfig = FilterRule[]
 
 @injectable()
 export class TweetChecker implements ITweetChecker {
-  constructor(@inject(TYPES.Logger) private logger: ILogger) {}
+  constructor(
+    @inject(TYPES.Logger) private logger: ILogger,
+    @inject(TYPES.AppState) private appState: AppState,
+  ) {}
 
   isRetweet = (tweet: Twitter.Status) => {
     if (tweet.text && tweet.text.indexOf("RT @") === 0) {
@@ -37,7 +53,7 @@ export class TweetChecker implements ITweetChecker {
         this.logger.info(url.expanded_url)
 
         // now check if the URL was already in some post
-        for (const tweet of this.tweets) {
+        for (const tweet of this.appState.tweets) {
           let oldUrls = tweet.entities.urls
           if (oldUrls && oldUrls.length > 0) {
             for (const oldUrl of oldUrls) {
@@ -132,13 +148,10 @@ export class TweetChecker implements ITweetChecker {
     return false
   }
 
-  // TODO move to store
-  tweets: Twitter.Status[] = []
-
   wasRetweetedRecently = (tweet: Twitter.Status) => {
-    for (let i = 1; i < this.tweets.length && i <= 10; i++) {
-      let j = this.tweets.length - i
-      if (this.tweets[j].user.name == tweet.user.name) {
+    for (let i = 1; i < this.appState.tweets.length && i <= 10; i++) {
+      let j = this.appState.tweets.length - i
+      if (this.appState.tweets[j].user.name == tweet.user.name) {
         this.logger.info("->user was retweeted recently")
         return true
       }
@@ -157,7 +170,7 @@ export class TweetChecker implements ITweetChecker {
     if (!text) {
       return false
     }
-    for (const tweet of this.tweets) {
+    for (const tweet of this.appState.tweets) {
       let text2 = tweet.text
       if (!text2) continue
 
@@ -223,7 +236,7 @@ export class TweetChecker implements ITweetChecker {
         }
       }
     }
-    for (const tweet2 of this.tweets) {
+    for (const tweet2 of this.appState.tweets) {
       if (tweet2.text && tweet2.text.indexOf(text) >= 0) {
         this.logger.info("-> same text as other tweet!")
         return true
@@ -254,10 +267,13 @@ export class TweetChecker implements ITweetChecker {
     ["isMediaOrLink", true],
   ]
 
-  shouldRetweet(tweet: Twitter.Status) {
+  shouldRetweet(
+    tweet: Twitter.Status,
+    filterPipelineConfig: FilterPipelineConfig = this.filterPipelineConfig,
+  ) {
     // measure total
     // measure funnel
-    return this.filterPipelineConfig.every(
+    return filterPipelineConfig.every(
       ([filterRule, shouldBe]) =>
         this.filterMapping[filterRule](tweet) === shouldBe,
     )

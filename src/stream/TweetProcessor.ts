@@ -1,9 +1,11 @@
 import Twit = require("twit")
 
 import { inject, injectable } from "inversify"
-import { TYPES } from "./container.types"
-import { searchqueries } from "./config/searchqueries"
-import { ILogger } from "./Logger"
+import { TYPES } from "../container.types"
+import { searchqueries } from "../config/searchqueries"
+import { ILogger } from "../Logger"
+import { ITweetChecker } from "./TweetChecker"
+import { TwitterActions } from "./TwitterActions"
 
 export interface ITweetProcessor {
   startProcessingStream(): any
@@ -64,6 +66,8 @@ export class TweetProcessor implements ITweetProcessor {
   constructor(
     @inject(TYPES.Logger) private logger: ILogger,
     @inject(TYPES.TwitterStreamHandler) private twitterStreamHandler: TwitterStreamHandler,
+    @inject(TYPES.TweetChecker) private tweetChecker: ITweetChecker,
+    @inject(TYPES.TwitterActions) private twitterActions: TwitterActions,
   ) {
     this.processTweet = this.processTweet.bind(this)
   }
@@ -79,70 +83,18 @@ export class TweetProcessor implements ITweetProcessor {
     this.logger.info("from: " + tweet.user.name + " tweet_id:" + tweet.id_str)
     this.logger.info(tweet.text)
 
-    let retweetIt = true
-    if (
-      isRetweet(tweet) ||
-      checkSimilarUrls(tweet) ||
-      isReplyOrMessage(tweet) ||
-      wasRetweetedRecently(tweet) ||
-      sameText(tweet) ||
-      similarText(tweet) ||
-      checkBlocklist(tweet) ||
-      !mediaOrLink(tweet)
-    ) {
-      retweetIt = false
-    }
-
-    if (retweetIt) {
-      doRetweet(tweet)
-      followTweeter(tweet)
+    if (this.tweetChecker.shouldRetweet(tweet)) {
+      this.twitterActions.doRetweet(tweet)
+      this.twitterActions.followTweeter(tweet)
     }
   }
 }
 
-@injectable()
-export class Retweeter {
-  constructor(
-    @inject(TYPES.twit) private twit: Twit,
-    @inject(TYPES.Logger) private logger: ILogger,
-  ) {}
-
-  counter = 0
-  // TODO move to config
-  LIMIT = 0
-  /**
-   * Retweet the message
-   * @param  {[type]} tweet
-   * @return {[type]}
-   */
-  doRetweet(tweet: Twit.Twitter.Status) {
-    if (this.counter < LIMIT) {
-      this.counter++
-
-      var randomTime = randomTimeBetween(0, 120)
-      log(" - - - RETWEET IT - - - in " + Math.floor(randomTime) / 1000 + "sec")
-      setTimeout(function() {
-        retweet(tweet)
-      }, randomTime)
-
-      if (tweet.entities.media && tweet.entities.media.length > 0) {
-        log("-> has media, but not link!")
-      }
-      tweets.push(tweet)
-      log("tweeted: " + tweets.length + " counter: " + this.counter)
-    } else {
-      log("<-- Pushed on QUEUE: " + queue.length)
-      queue.push(tweet)
-    }
+export function randomTimeBetween(fromSeconds: number, toSeconds: number) {
+  if (toSeconds < fromSeconds) {
+    return 0
   }
-
-  private retweet = (tweet: Twit.Twitter.Status) => {
-    // if(credentials.production){
-    // use id_str for everything because of stupid JS
-    this.twit.post("statuses/retweet/:id", { id: tweet.id_str }, err => {
-      if (err) {
-        this.logger.info("- - - retweet ERROR: " + err)
-      }
-    })
-  }
+  var from = fromSeconds * 1000
+  var to = toSeconds * 1000 - from
+  return from + Math.random() * to
 }
