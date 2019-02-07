@@ -341,46 +341,6 @@ function similarText(tweet) {
   return false
 }
 
-function checkBlocklist(tweet) {
-  // look if some of the blocklist entries is in the tweet
-  return searchqueries.blocklist.some(function(blocked) {
-    var truths = 0
-
-    // check username, links and text
-    truths += tweet.text.toLowerCase().indexOf(blocked.toLowerCase()) >= 0
-    truths += tweet.entities.urls.some(function(url) {
-      return url.expanded_url.toLowerCase().indexOf(blocked.toLowerCase()) >= 0
-    })
-    truths += tweet.text.indexOf(blocked) >= 0
-    truths += tweet.user.name.toLowerCase().indexOf(blocked.toLowerCase()) >= 0
-
-    return truths > 0
-  })
-}
-
-function sameText(tweet) {
-  var text = tweet.text
-  var urls = tweet.entities.urls
-  if (urls && urls.length > 0) {
-    for (var i in urls) {
-      var url = urls[i].url
-      if (text.indexOf(url) == 0) {
-        text = text.replace(url + " ", "")
-      } else {
-        text = text.replace(" " + url, "")
-      }
-    }
-  }
-  for (var i in tweets) {
-    var t2 = tweets[i]
-    if (t2.text.indexOf(text) >= 0) {
-      log("-> same text as other tweet!")
-      return true
-    }
-  }
-  return false
-}
-
 /**
  * Trim all saved tweets, store something like 1000
  * @return {[type]}
@@ -393,60 +353,6 @@ function cutTweets() {
   }
 }
 
-/**
- * Follow the guy/gal who tweeted this
- * @param  {[type]} tweet
- * @return {[type]}
- */
-function followTweeter(tweet) {
-  // don't follow everybody...
-  if (!tweet.user.following) {
-    if (Math.random() > 0.77) {
-      logDirect("* * * Yeahy! Follow the user! * * *")
-      setTimeout(function() {
-        follow(tweet) // follow sometime within the hour
-      }, Math.random() * 1000 * 60 * 60)
-    }
-  } else {
-    log("-> Already following user...")
-  }
-}
-
-function randomTimeBetween(fromSeconds, toSeconds) {
-  if (toSeconds < fromSeconds) {
-    return 0
-  }
-  var from = fromSeconds * 1000
-  var to = toSeconds * 1000 - from
-  return from + Math.random() * to
-}
-
-/**
- * Retweet the message
- * @param  {[type]} tweet
- * @return {[type]}
- */
-function doRetweet(tweet) {
-  if (counter < LIMIT) {
-    counter++
-
-    var randomTime = randomTimeBetween(0, 120)
-    log(" - - - RETWEET IT - - - in " + Math.floor(randomTime) / 1000 + "sec")
-    setTimeout(function() {
-      retweet(tweet)
-    }, randomTime)
-
-    if (tweet.entities.media && tweet.entities.media.length > 0) {
-      log("-> has media, but not link!")
-    }
-    tweets.push(tweet)
-    log("tweeted: " + tweets.length + " counter: " + counter)
-  } else {
-    log("<-- Pushed on QUEUE: " + queue.length)
-    queue.push(tweet)
-  }
-}
-
 function dispatchQueue() {
   logDirect("- - - Dispatch from queue - - -")
   if (counter < LIMIT && queue.length > 0) {
@@ -456,47 +362,6 @@ function dispatchQueue() {
   } else {
     logDirect("- - - Stop Dispatching from queue - - -")
   }
-}
-
-function follow(tweet) {
-  // if(credentials.production){
-  twitter.post("friendships/create", { user_id: tweet.user.id_str }, function(
-    err,
-    data,
-    response,
-  ) {
-    // log(data);
-    if (err) {
-      logDirect("- - - follow ERROR: " + err)
-    }
-  })
-  // }
-}
-
-function manualRetweet(tweet) {
-  log("- - - manual RETWEET - - -")
-  var rtMessage = "RT @" + tweet.user.screen_name + ": " + tweet.text
-  log("Retweet length chars: " + rtMessage.length)
-  if (rtMessage.length > 140) {
-    log("-> Manual retweet not possible :(, trying normal retweet.")
-    retweet(tweet)
-  }
-}
-
-function retweet(tweet) {
-  // if(credentials.production){
-  // use id_str for everything because of stupid JS
-  twitter.post("statuses/retweet/:id", { id: tweet.id_str }, function(
-    err,
-    data,
-    response,
-  ) {
-    // log(data);
-    if (err) {
-      logDirect("- - - retweet ERROR: " + err)
-    }
-  })
-  // }
 }
 
 function getFriendsWhoDontFollowYouBack() {

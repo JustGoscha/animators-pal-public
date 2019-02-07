@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify"
 import { TYPES } from "../container.types"
 import { ILogger } from "../Logger"
 import { AppState } from "../AppState"
-import { randomTimeBetween } from "./TweetProcessor"
+import { randomTimeBetween } from "../stream/TweetProcessor"
 
 @injectable()
 export class TwitterActions {
@@ -20,6 +20,7 @@ export class TwitterActions {
   // TODO move to config
   LIMIT = 0
   queue: Twit.Twitter.Status[] = []
+
   /**
    * Follow the guy/gal who tweeted this
    * @param  {[type]} tweet

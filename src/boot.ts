@@ -1,14 +1,16 @@
 import "reflect-metadata"
-import { Container } from "inversify"
-import { Logger, ILogger } from "./Logger"
-import { TYPES } from "./container.types"
-import { IScheduler, Scheduler } from "./Scheduler"
 import twit = require("twit")
-import { credentials } from "./config/credentials"
-import { TwitterStreamHandler, TweetProcessor } from "./stream/TweetProcessor"
-import { TwitterActions } from "./stream/TwitterActions"
-import { TweetChecker } from "./stream/TweetChecker"
+
 import { AppState } from "./AppState"
+import { Container } from "inversify"
+import { credentials } from "./config/credentials"
+import { IScheduler, Scheduler } from "./Scheduler"
+import { Logger, ILogger } from "./Logger"
+import { TweetChecker } from "./stream/TweetChecker"
+import { TweetProcessor } from "./stream/TweetProcessor"
+import { TwitterActions } from "./actions/TwitterActions"
+import { TwitterStreamHandler } from "./stream/TwitterStreamHandler"
+import { TYPES } from "./container.types"
 
 // prettier-ignore
 export function boot(): Container {
