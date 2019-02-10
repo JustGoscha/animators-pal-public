@@ -4,7 +4,7 @@ import twit = require("twit")
 import { AppState } from "./AppState"
 import { Container } from "inversify"
 import { credentials } from "./config/credentials"
-import { IScheduler, Scheduler } from "./Scheduler"
+import { IScheduler, Scheduler } from "./scheduler/Scheduler"
 import { Logger, ILogger } from "./Logger"
 import { TweetChecker } from "./stream/TweetChecker"
 import { TweetProcessor } from "./stream/TweetProcessor"
