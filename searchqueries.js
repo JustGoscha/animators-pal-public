@@ -58,6 +58,8 @@ module.exports = {
     "gobelins",
     "#アニメーション",
     "#АНИМАЦИЯ",
+    "animonthly",
+    "animdaily",
     // VR
     "#vranimation",
     "quill animation",
@@ -95,7 +97,8 @@ module.exports = {
     "hentai",
     "rule34",
     "nsfw",
-    "manyvids"
+    "manyvids",
+    "porn",
   ],
   urls: [
     "vimeo.com",
