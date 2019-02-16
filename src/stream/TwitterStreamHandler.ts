@@ -14,7 +14,7 @@ export class TwitterStreamHandler {
   private reconnects = 0
   subscribeToStream(
     config: Twit.Params,
-    statusHandler: (tweet: Twit.Twitter.Status) => any,
+    statusHandler: (tweet: Twit.Twitter.Status) => void,
   ) {
     const stream = this.twit.stream("statuses/filter", {
       track: config.track,

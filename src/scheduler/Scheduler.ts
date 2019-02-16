@@ -1,6 +1,6 @@
 import { inject } from "inversify"
-import { ILogger } from "./Logger"
-import { TYPES } from "./container.types"
+import { ILogger } from "../Logger"
+import { TYPES } from "../container.types"
 
 export type Task = {
   name: string

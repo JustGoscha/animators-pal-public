@@ -3,7 +3,7 @@ import { TYPES } from "../container.types"
 import { Scheduler } from "./Scheduler"
 
 @injectable()
-class Worker {
+export class Worker {
   constructor(@inject(TYPES.Scheduler) private scheduler: Scheduler) {}
   start() {}
 }

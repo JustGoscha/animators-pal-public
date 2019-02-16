@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify"
 import { TYPES } from "../container.types"
 import { ILogger } from "../Logger"
 import { AppState } from "../AppState"
-import { randomTimeBetween } from "../stream/TweetProcessor"
+import { randomTimeBetween } from "../util/randomTimeBetween"
 
 @injectable()
 export class TwitterActions {
