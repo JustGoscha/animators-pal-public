@@ -262,7 +262,7 @@ export class TweetChecker implements ITweetChecker {
     const funnel = this.appState.filterStatistics.funnel
     const passed = filter([filterRule, shouldBe])
     if (!passed) {
-      if (funnel[filterRule] !== undefined) {
+      if (!funnel[filterRule]) {
         funnel[filterRule] = 0
       }
       ;(funnel[filterRule] as number)++
