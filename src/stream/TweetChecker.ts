@@ -5,6 +5,7 @@ import { TYPES } from "../container.types"
 import { ILogger } from "../Logger"
 import { AppState } from "../AppState"
 import { levenstein } from "../lib/levenstein"
+import { FilterPipelineConfig, FilterFunction, FilterRule } from "./FilterTypes"
 
 export interface ITweetChecker {
   shouldRetweet(
@@ -12,19 +13,6 @@ export interface ITweetChecker {
     filterPipelineConfig?: FilterPipelineConfig,
   ): boolean
 }
-
-export type FilterFunction = (tweet: Twitter.Status) => boolean
-export type FilterName =
-  | "isRetweet"
-  | "isSimilarUrl"
-  | "isReplyOrMessage"
-  | "wasRetweetedRecently"
-  | "isSameText"
-  | "isSimilarText"
-  | "isInBlocklist"
-  | "isMediaOrLink"
-export type FilterRule = [FilterName, boolean]
-export type FilterPipelineConfig = FilterRule[]
 
 @injectable()
 export class TweetChecker implements ITweetChecker {
@@ -267,16 +255,35 @@ export class TweetChecker implements ITweetChecker {
     ["isMediaOrLink", true],
   ]
 
+  private measureFunnel = (
+    [filterRule, shouldBe]: FilterRule,
+    filter: (filter: FilterRule) => boolean,
+  ): boolean => {
+    const funnel = this.appState.filterStatistics.funnel
+    const passed = filter([filterRule, shouldBe])
+    if (!passed) {
+      if (funnel[filterRule] !== undefined) {
+        funnel[filterRule] = 0
+      }
+      ;(funnel[filterRule] as number)++
+    }
+    return passed
+  }
+
   shouldRetweet(
     tweet: Twitter.Status,
     filterPipelineConfig: FilterPipelineConfig = this.filterPipelineConfig,
   ) {
+    this.appState.filterStatistics.totalTweets++
     // measure total
     // measure funnel
-    return filterPipelineConfig.every(
-      ([filterRule, shouldBe]) =>
-        this.filterMapping[filterRule](tweet) === shouldBe,
+    const passed = filterPipelineConfig.every(rule =>
+      this.measureFunnel(rule, ([filterRule, shouldBe]) => {
+        const passed = this.filterMapping[filterRule](tweet) === shouldBe
+        return passed
+      }),
     )
-    // measure passing
+    if (passed) this.appState.filterStatistics.passedTweets++
+    return passed
   }
 }

@@ -9,6 +9,7 @@ import {
 } from "../config/constants"
 import { AppState } from "../AppState"
 import { TwitterActions } from "../actions/TwitterActions"
+import { ILogger } from "../Logger"
 
 @injectable()
 export class Worker {
@@ -16,6 +17,7 @@ export class Worker {
     @inject(TYPES.Scheduler) private scheduler: Scheduler,
     @inject(TYPES.AppState) private appState: AppState,
     @inject(TYPES.TwitterActions) private twitterActions: TwitterActions,
+    @inject(TYPES.Logger) private logger: ILogger,
   ) {}
   start() {
     this.scheduler.scheduleInterval(this.tweetFromQueue(), 14 * MINUTE)
@@ -25,6 +27,18 @@ export class Worker {
     )
     this.scheduler.scheduleInterval(this.cutTweets(), 0.5 * HOUR)
     this.scheduler.scheduleInterval(this.unfollowRandom(), 48 * MINUTE)
+    this.scheduler.scheduleInterval(this.showStats(), 5 * MINUTE)
+  }
+
+  private showStats(): Task {
+    return {
+      name: "showStats",
+      action: () => {
+        this.logger.info(
+          JSON.stringify(this.appState.filterStatistics, null, 2),
+        )
+      },
+    }
   }
 
   private cutTweets(): Task {

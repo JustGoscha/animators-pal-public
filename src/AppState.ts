@@ -1,11 +1,17 @@
 import { injectable } from "inversify"
 import { Twitter } from "twit"
+import { FilterStatistics } from "./stream/FilterTypes"
 
 @injectable()
 export class AppState {
   private _tweetHistory: Twitter.Status[] = []
   private _tweetCount: number = 0
   private _tweetQueue: Twitter.Status[] = []
+  filterStatistics: FilterStatistics = {
+    totalTweets: 0,
+    passedTweets: 0,
+    funnel: {},
+  }
 
   get tweetQueue(): ReadonlyArray<Twitter.Status> {
     return this.tweetQueue
