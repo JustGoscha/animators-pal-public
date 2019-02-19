@@ -3,10 +3,40 @@ import { Twitter } from "twit"
 
 @injectable()
 export class AppState {
-  tweets: Twitter.Status[] = []
+  private _tweetHistory: Twitter.Status[] = []
+  private _tweetCount: number = 0
+  private _tweetQueue: Twitter.Status[] = []
 
-  pushTweet(tweet: Twitter.Status) {
-    this.tweets.push(tweet)
+  get tweetQueue(): ReadonlyArray<Twitter.Status> {
+    return this.tweetQueue
   }
-  trimTweets() {}
+
+  get tweetHistory(): ReadonlyArray<Twitter.Status> {
+    return this._tweetHistory
+  }
+
+  set tweetHistory(history: ReadonlyArray<Twitter.Status>) {
+    this._tweetHistory = [...history]
+  }
+
+  get tweetCount(): number {
+    return this._tweetCount
+  }
+
+  set tweetCount(count: number) {
+    this._tweetCount = count
+  }
+
+  dequeueTweet(): Twitter.Status | undefined {
+    return this._tweetQueue.shift()
+  }
+  pushQueue(tweet: Twitter.Status) {
+    this._tweetQueue.push(tweet)
+  }
+  pushHistory(tweet: Twitter.Status) {
+    this._tweetHistory.push(tweet)
+  }
+  trimHistory(amount: number): Twitter.Status[] {
+    return this._tweetHistory.splice(0, amount)
+  }
 }

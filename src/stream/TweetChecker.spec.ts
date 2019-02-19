@@ -20,7 +20,7 @@ describe("TweetChecker", () => {
         "Whoa, that's amazibg #animation #walkcycle",
         "Hahahaha I'm such a great dude, what's wrong with the world",
       ]
-      appState.tweets = tweets.map(t => ({ text: t } as Twitter.Status))
+      appState.tweetHistory = tweets.map(t => ({ text: t } as Twitter.Status))
     })
 
     it("should correctly apply filter funnel", () => {

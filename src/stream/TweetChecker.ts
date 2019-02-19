@@ -53,7 +53,7 @@ export class TweetChecker implements ITweetChecker {
         this.logger.info(url.expanded_url)
 
         // now check if the URL was already in some post
-        for (const tweet of this.appState.tweets) {
+        for (const tweet of this.appState.tweetHistory) {
           let oldUrls = tweet.entities.urls
           if (oldUrls && oldUrls.length > 0) {
             for (const oldUrl of oldUrls) {
@@ -149,9 +149,9 @@ export class TweetChecker implements ITweetChecker {
   }
 
   wasRetweetedRecently = (tweet: Twitter.Status) => {
-    for (let i = 1; i < this.appState.tweets.length && i <= 10; i++) {
-      let j = this.appState.tweets.length - i
-      if (this.appState.tweets[j].user.name == tweet.user.name) {
+    for (let i = 1; i < this.appState.tweetHistory.length && i <= 10; i++) {
+      let j = this.appState.tweetHistory.length - i
+      if (this.appState.tweetHistory[j].user.name == tweet.user.name) {
         this.logger.info("->user was retweeted recently")
         return true
       }
@@ -170,7 +170,7 @@ export class TweetChecker implements ITweetChecker {
     if (!text) {
       return false
     }
-    for (const tweet of this.appState.tweets) {
+    for (const tweet of this.appState.tweetHistory) {
       let text2 = tweet.text
       if (!text2) continue
 
@@ -236,7 +236,7 @@ export class TweetChecker implements ITweetChecker {
         }
       }
     }
-    for (const tweet2 of this.appState.tweets) {
+    for (const tweet2 of this.appState.tweetHistory) {
       if (tweet2.text && tweet2.text.indexOf(text) >= 0) {
         this.logger.info("-> same text as other tweet!")
         return true
