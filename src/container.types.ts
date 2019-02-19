@@ -7,4 +7,5 @@ export const TYPES = {
   TweetProcessor: Symbol("TweetProcessor"),
   twit: Symbol("twit"),
   TwitterStreamHandler: Symbol("TwitterStreamHandler"),
+  Worker: Symbol("Worker"),
 }

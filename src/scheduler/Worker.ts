@@ -25,10 +25,6 @@ export class Worker {
     )
     this.scheduler.scheduleInterval(this.cutTweets(), 0.5 * HOUR)
     this.scheduler.scheduleInterval(this.unfollowRandom(), 48 * MINUTE)
-    this.scheduler.scheduleInterval(
-      this.getFriendsWhoDontFollowYouBack(),
-      30 * MINUTE,
-    )
   }
 
   private cutTweets(): Task {
@@ -46,11 +42,13 @@ export class Worker {
   }
 
   private unfollowRandom(): Task {
-    return { name: "unfollowRandom", action: () => {} }
-  }
-
-  private getFriendsWhoDontFollowYouBack() {
-    return { name: "getFriendsWhoDontFollowBack", action: () => {} }
+    return {
+      name: "unfollowRandom",
+      action: async () => {
+        const potentialUnfollows = await this.twitterActions.getUnrequitedFollowers()
+        this.twitterActions.unfollowRandom(potentialUnfollows)
+      },
+    }
   }
 
   private decreaseTweetCount() {

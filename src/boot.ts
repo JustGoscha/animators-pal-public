@@ -11,6 +11,7 @@ import { TweetProcessor } from "./stream/TweetProcessor"
 import { TwitterActions } from "./actions/TwitterActions"
 import { TwitterStreamHandler } from "./stream/TwitterStreamHandler"
 import { TYPES } from "./container.types"
+import { Worker } from "./scheduler/Worker"
 
 // prettier-ignore
 export function boot(): Container {
@@ -18,6 +19,7 @@ export function boot(): Container {
   container.bind<ILogger>(TYPES.Logger).to(Logger).inSingletonScope()
   container.bind<AppState>(TYPES.AppState).to(AppState).inSingletonScope()
   container.bind<IScheduler>(TYPES.Scheduler).to(Scheduler).inSingletonScope()
+  container.bind<Worker>(TYPES.Worker).to(Worker).inSingletonScope()
   container.bind<TwitterStreamHandler>(TYPES.TwitterStreamHandler).to(TwitterStreamHandler).inSingletonScope()
   container.bind<TweetProcessor>(TYPES.TweetProcessor).to(TweetProcessor).inSingletonScope()
   container.bind<TweetChecker>(TYPES.TweetChecker).to(TweetChecker).inSingletonScope()
