@@ -6,6 +6,7 @@ import { AppState } from "../AppState"
 import { randomTimeBetween } from "../util/randomTimeBetween"
 import { TWEET_LIMIT } from "../config/constants"
 import { screen_name } from "../config/credentials"
+import * as _ from "lodash"
 
 @injectable()
 export class TwitterActions {
@@ -41,49 +42,51 @@ export class TwitterActions {
    * Gets followers that don't follow you back.
    */
   async getUnrequitedFollowers(): Promise<string[]> {
+    const [friends, followers] = await Promise.all([
+      this.getFriends(),
+      this.getFollowers(),
+    ])
+
+    const friendsNotFollowingMe = friends.filter(
+      friend => !followers.includes(friend),
+    )
+
+    return friendsNotFollowingMe
+  }
+
+  private getFriends(): Promise<string[]> {
     return new Promise((resolve, _reject) => {
-      let unrequited: string[] = []
       this.twit.get(
         "friends/ids",
         { screen_name: screen_name, stringify_ids: true, count: 5000 },
         (err, data: any) => {
-          let friends: string[]
+          let friends: string[] = []
           if (data && !err) {
             friends = data.ids
           } else {
             this.logger.error("ERROR: some error happened")
           }
+          resolve(friends)
+        },
+      )
+    })
+  }
 
-          //log("Friends:" + data.ids);
-
-          this.twit.get(
-            "followers/ids",
-            {
-              screen_name: screen_name,
-              stringify_ids: true,
-              count: 5000,
-            },
-            (err, data: any) => {
-              if (!err && data) {
-                const followers: string[] = data.ids
-                //log("Followers:"+data.ids);
-                for (const friend of friends) {
-                  var guilty = true
-                  for (const follower of followers) {
-                    if (friend == follower) {
-                      guilty = false
-                      break
-                    }
-                  }
-                  if (guilty) {
-                    unrequited.push(friend)
-                  }
-                }
-                this.logger.info("UPDATE people to unfollow!")
-                resolve(unrequited)
-              }
-            },
-          )
+  private getFollowers(): Promise<string[]> {
+    return new Promise((resolve, _reject) => {
+      this.twit.get(
+        "followers/ids",
+        {
+          screen_name: screen_name,
+          stringify_ids: true,
+          count: 5000,
+        },
+        (err, data: any) => {
+          let followers: string[] = []
+          if (!err && data) {
+            followers = data.ids
+          }
+          resolve(followers)
         },
       )
     })
