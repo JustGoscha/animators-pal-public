@@ -1,4 +1,4 @@
-import { inject } from "inversify"
+import { inject, injectable } from "inversify"
 import { ILogger } from "../Logger"
 import { TYPES } from "../container.types"
 
@@ -12,6 +12,7 @@ export interface IScheduler {
   scheduleInterval(task: Task, milliseconds: number): Promise<void>
 }
 
+@injectable()
 export class Scheduler implements IScheduler {
   constructor(@inject(TYPES.Logger) private logger: ILogger) {}
 

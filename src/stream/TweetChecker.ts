@@ -4,7 +4,7 @@ import { searchqueries } from "../config/searchqueries"
 import { TYPES } from "../container.types"
 import { ILogger } from "../Logger"
 import { AppState } from "../AppState"
-const levenstein = require("../lib/levenstein.js")
+import { levenstein } from "../lib/levenstein"
 
 export interface ITweetChecker {
   shouldRetweet(
