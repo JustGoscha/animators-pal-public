@@ -15,4 +15,5 @@
 
 # forever -o ${LOGDIR}/server.log -l ${LOGDIR}/forever.log -e ${LOGDIR}/error.log --spinSleepTime 5000 start main.js 
 # 
-node_modules/pm2/bin/pm2 start animators-pal.json
+docker build -t anim-pal .
+docker run -d anim-pal
