@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-default-export": true,
+    "no-floating-promises": true,
+    "no-use-before-declare": false
+  }
+}

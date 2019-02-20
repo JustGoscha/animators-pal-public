@@ -1,0 +1,6 @@
+{
+  "prettier.tslintIntegration": true,
+  "editor.formatOnSave": true,
+  "codemetrics.basics.ComplexityLevelNormal": 8,
+  "codemetrics.basics.ComplexityLevelHigh": 12
+}

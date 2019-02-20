@@ -1,4 +1,4 @@
-module.exports = {
+export const searchqueries = {
   track: [
     "#animation",
     "animated #shortfilm",
@@ -63,7 +63,7 @@ module.exports = {
     // VR
     "#vranimation",
     "quill animation",
-    "quillustration animation"
+    "quillustration animation",
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
@@ -78,14 +78,14 @@ module.exports = {
     "915045830683377665", //littlemntnanim
     "77457790", // rloubersanes
     "86016563", // all_animated
-    "748524102105718784" // gorosart
+    "748524102105718784", // gorosart
   ],
   followed: [
     "@catsuka",
     "@AnimationBreaks",
     "@motionographer",
     "@animadetv",
-    "@gorosart"
+    "@gorosart",
     // "@joyybox"
   ],
   blocklist: [
@@ -98,6 +98,7 @@ module.exports = {
     "rule34",
     "nsfw",
     "manyvids",
+    "#nsfw",
     "porn",
   ],
   urls: [
@@ -107,12 +108,12 @@ module.exports = {
     "motionographer.com",
     "awn.com",
     "gph.is",
-    "cartoonbrew.com"
+    "cartoonbrew.com",
     // ,
     // "youtu.be",
     // "youtube.com"
-  ]
-};
+  ],
+}
 
 // #handdrawn
 // #flashanimation
