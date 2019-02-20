@@ -1,9 +1,9 @@
 {
-  "script"          : "main.js",
-  "name"            : "animators-pal",
-  "error_file"      : "./logs/anim.log",
-  "out_file"        : "./logs/anim.log",
-  "retain"          : 7, 
-  "merge_logs"      : true,
-  "log_date_format" : "YYYY-MM-DD HH:mm Z"
+  "script": "dist/bin/start-bot.js",
+  "name": "animators-pal",
+  "error_file": "./logs/anim.log",
+  "out_file": "./logs/anim.log",
+  "retain": 3,
+  "merge_logs": true,
+  "log_date_format": "YYYY-MM-DD HH:mm Z"
 }
