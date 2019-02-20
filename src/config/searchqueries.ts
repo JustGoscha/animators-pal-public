@@ -58,6 +58,8 @@ export const searchqueries = {
     "gobelins",
     "#アニメーション",
     "#АНИМАЦИЯ",
+    "animonthly",
+    "animdaily",
     // VR
     "#vranimation",
     "quill animation",
@@ -97,6 +99,7 @@ export const searchqueries = {
     "nsfw",
     "manyvids",
     "#nsfw",
+    "porn",
   ],
   urls: [
     "vimeo.com",
