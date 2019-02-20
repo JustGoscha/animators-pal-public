@@ -96,6 +96,7 @@ export const searchqueries = {
     "rule34",
     "nsfw",
     "manyvids",
+    "#nsfw",
   ],
   urls: [
     "vimeo.com",

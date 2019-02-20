@@ -60,6 +60,9 @@ export class Worker {
       name: "unfollowRandom",
       action: async () => {
         const potentialUnfollows = await this.twitterActions.getUnrequitedFollowers()
+        this.logger.info(
+          `Found ${potentialUnfollows.length} potential users to unfollow.`,
+        )
         this.twitterActions.unfollowRandom(potentialUnfollows)
       },
     }

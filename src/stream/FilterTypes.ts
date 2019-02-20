@@ -10,6 +10,8 @@ export type FilterName =
   | "isSimilarText"
   | "isInBlocklist"
   | "isMediaOrLink"
+  | "isMatureContent"
+
 export type FilterRule = [FilterName, boolean]
 export type FilterPipelineConfig = FilterRule[]
 

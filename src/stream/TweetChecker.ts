@@ -147,6 +147,14 @@ export class TweetChecker implements ITweetChecker {
     return false
   }
 
+  isMatureContent = (tweet: Twitter.Status) => {
+    if (tweet.possibly_sensitive) {
+      this.logger.info("-> possibly NSFW")
+      return true
+    }
+    return false
+  }
+
   isSimilarText = (tweet: Twitter.Status) => {
     let text = tweet.text
     // don't check short text
@@ -193,7 +201,7 @@ export class TweetChecker implements ITweetChecker {
         tweet.text.toLowerCase().indexOf(blocked.toLowerCase()) >= 0
           ? 1
           : 0
-      truths += tweet.entities.urls.some(function(url) {
+      truths += tweet.entities.urls.some(url => {
         return (
           url.expanded_url.toLowerCase().indexOf(blocked.toLowerCase()) >= 0
         )
@@ -242,6 +250,7 @@ export class TweetChecker implements ITweetChecker {
     isSimilarText: this.isSimilarText,
     isInBlocklist: this.isInBlocklist,
     isMediaOrLink: this.isMediaOrLink,
+    isMatureContent: this.isMatureContent,
   }
 
   filterPipelineConfig: FilterPipelineConfig = [
@@ -253,6 +262,7 @@ export class TweetChecker implements ITweetChecker {
     ["isSimilarText", false],
     ["isInBlocklist", false],
     ["isMediaOrLink", true],
+    ["isMatureContent", false],
   ]
 
   private measureFunnel = (
