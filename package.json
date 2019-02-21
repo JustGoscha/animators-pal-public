@@ -7,7 +7,7 @@
     "postinstall": "npm build",
     "build": "tsc --build tsconfig.json --pretty ",
     "build:watch": "tsc --build tsconfig.json --pretty --watch",
-    "start": "node main.js",
+    "start": "pm2 start animators-pal.json",
     "clean": "rm -rf dist",
     "test": "jest"
   },
