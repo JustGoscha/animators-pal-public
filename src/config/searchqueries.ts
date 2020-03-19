@@ -64,6 +64,8 @@ export const searchqueries = {
     "#vranimation",
     "quill animation",
     "quillustration animation",
+    "#roughanimator",
+    "procreate animation",
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
