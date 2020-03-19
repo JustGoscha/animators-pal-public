@@ -102,6 +102,7 @@ export const searchqueries = {
     "manyvids",
     "#nsfw",
     "porn",
+    "chaturbate"
   ],
   urls: [
     "vimeo.com",
@@ -111,6 +112,7 @@ export const searchqueries = {
     "awn.com",
     "gph.is",
     "cartoonbrew.com",
+    "twitter.com"
     // ,
     // "youtu.be",
     // "youtube.com"
