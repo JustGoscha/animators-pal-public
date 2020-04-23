@@ -68,6 +68,8 @@ export const searchqueries = {
     "#roughanimator",
     "procreate animation",
     "#callipeg",
+    "#animationdesk",
+    "#flipaclip",
     
   ],
   follow: [
