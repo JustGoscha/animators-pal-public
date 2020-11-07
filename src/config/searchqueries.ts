@@ -3,11 +3,11 @@ export const searchqueries = {
     "#animation",
     "animated #shortfilm",
     "animation #shortfilm",
-    "animation newgrounds",
+    "animation #newgrounds",
     // "animation movie",
     // "animation video",
     "animation drawn",
-    "animation illustration",
+    "animation #illustration",
     // "animation film",
     "animated short movie",
     // "animated movie",
@@ -15,11 +15,10 @@ export const searchqueries = {
     "animated illustration",
     "animated drawing",
     "animated draw",
-    "animation frame",
+    "animation #frame",
     "indie animation",
     "penciltest animation",
-    "#traditionalanimation",
-    "traditional animation",
+    "#traditional animation",
     "#walkcycle",
     "handdrawn animation",
     "hand drawn animation",
@@ -42,8 +41,8 @@ export const searchqueries = {
     "drawing animator",
     "penciltest animator",
     "#traditionalanimator",
-    "traditional animator",
-    "handdrawn animator",
+    "#traditional animator",
+    "#handdrawn animator",
     "animator gif 2d",
     "animator film 2d",
     "pencil animator",
@@ -69,8 +68,7 @@ export const searchqueries = {
     "procreate animation",
     "#callipeg",
     "#animationdesk",
-    "#flipaclip",
-    
+    "#flipaclip"
   ],
   follow: [
     "40436619", // @catsuka - animation blog/magazine
@@ -107,7 +105,13 @@ export const searchqueries = {
     "manyvids",
     "#nsfw",
     "porn",
-    "chaturbate"
+    "chaturbate",
+    "cock",
+    "cunt",
+    "fuck",
+    "rape",
+    "pussy",
+    "dick"
   ],
   urls: [
     "vimeo.com",
